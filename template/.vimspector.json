@@ -1,0 +1,16 @@
+{
+  "configurations": {
+    "Java Attach": {
+      "adapter": "vscode-java",
+      "configuration": {
+        "request": "attach",
+        "hostName": "localhost",
+        "port": "5005",
+        "sourcePaths": [
+          "${workspaceFolder}/src/main/java",
+          "${workspaceFolder}/src/test/java"
+        ]
+      }
+    }
+  }
+}
