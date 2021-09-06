@@ -69,6 +69,9 @@ autocmd FileChangedShellPost *
 " Search a hightlighted text
 " vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
+" Close current file opened without closing the window.
+nnoremap <silent> <leader>bd :bp\|bd #<CR>
+
 let nvim_settings_dir = nvim_config_dir.'settings/'
 
 execute 'source '.nvim_settings_dir.'onedark.vim'

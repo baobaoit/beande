@@ -28,4 +28,10 @@ function! s:StartDebugging()
 endfunction
 
 nnoremap <silent> <Leader>da :call <SID>StartDebugging()<CR>
+
+" Clears vimspector's breakpoints
+nnoremap <silent> <Leader>cb :call vimspector#ClearBreakpoints()<CR>
+
+" Vimspector reset layout
+nnoremap <silent> <Leader>vr :VimspectorReset<CR>
 " === puremourning/vimspector ===
