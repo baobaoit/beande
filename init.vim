@@ -43,6 +43,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 " {{ 80 characters limit }}
   Plug 'whatyouhide/vim-lengthmatters'
+
+" {{ Remove unused imports }}
+  Plug 'akhaku/vim-java-unused-imports'
+
 call plug#end()
 
 set mouse=a
@@ -54,6 +58,7 @@ set listchars=tab:\|\
 set list
 set foldmethod=indent
 set foldlevelstart=99
+set path+=**
 
 " Disable automatic comment in newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -86,6 +91,7 @@ execute 'source '.nvim_settings_dir.'vim-devicons.vim'
 execute 'source '.nvim_settings_dir.'YouCompleteMe.vim'
 execute 'source '.nvim_settings_dir.'vimspector.vim'
 execute 'source '.nvim_settings_dir.'vim-lengthmatters.vim'
+execute 'source '.nvim_settings_dir.'vim-java-unused-imports.vim'
 
 let nvim_scripts_dir = nvim_config_dir.'scripts/'
 
