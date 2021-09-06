@@ -1,0 +1,4 @@
+{
+	"java.sources.organizeImports.starThreshold": 9999,
+	"java.sources.organizeImports.staticStarThreshold": 9999 
+}
