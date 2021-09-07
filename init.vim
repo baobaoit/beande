@@ -49,9 +49,11 @@ call plug#begin('~/.config/nvim/plugged')
 
 call plug#end()
 
-set mouse=a
+filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
+set expandtab
+set mouse=a
 set number
 set ignorecase
 set listchars=tab:\|\ 
