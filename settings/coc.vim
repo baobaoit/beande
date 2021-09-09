@@ -107,4 +107,15 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 nnoremap <silent><nowait> <C-a>		:CocAction<CR>
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" coc will install the missing extensions after coc.nvim service started
+let g:coc_global_extensions = [
+  \ 'coc-java', 
+  \ 'coc-json',
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
+  \ 'coc-vimlsp',
+  \ 'coc-xml',
+  \ 'coc-yaml'
+\ ]
 " === coc ===

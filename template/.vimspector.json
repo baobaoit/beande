@@ -10,6 +10,12 @@
           "${workspaceFolder}/src/main/java",
           "${workspaceFolder}/src/test/java"
         ]
+      },
+      "breakpoints": {
+        "exception": {
+          "caught": "N",
+          "uncaught": "N"
+        }
       }
     }
   }
