@@ -1,4 +1,6 @@
 {
-	"java.sources.organizeImports.starThreshold": 9999,
-	"java.sources.organizeImports.staticStarThreshold": 9999 
+    "java.sources.organizeImports.starThreshold": 9999,
+    "java.sources.organizeImports.staticStarThreshold": 9999,
+    "diagnostic.displayByAle": true,
+    "java.jdt.ls.vmargs": "-javaagent:/Users/baole/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar -Xbootclasspath/a:/Users/baole/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"
 }

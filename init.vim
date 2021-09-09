@@ -47,6 +47,8 @@ call plug#begin('~/.config/nvim/plugged')
 " {{ Remove unused imports }}
   Plug 'akhaku/vim-java-unused-imports'
 
+" {{ Analyze }}
+  Plug 'dense-analysis/ale'
 call plug#end()
 
 filetype plugin indent on
@@ -94,6 +96,7 @@ execute 'source '.nvim_settings_dir.'YouCompleteMe.vim'
 execute 'source '.nvim_settings_dir.'vimspector.vim'
 execute 'source '.nvim_settings_dir.'vim-lengthmatters.vim'
 execute 'source '.nvim_settings_dir.'vim-java-unused-imports.vim'
+execute 'source '.nvim_settings_dir.'ale.vim'
 
 let nvim_scripts_dir = nvim_config_dir.'scripts/'
 
