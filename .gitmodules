@@ -1,0 +1,3 @@
+[submodule "pack/eclipse.jdt.ls"]
+	path = pack/eclipse.jdt.ls
+	url = https://github.com/eclipse/eclipse.jdt.ls.git
