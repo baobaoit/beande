@@ -50,6 +50,11 @@ require 'paq' {
   'kyazdani42/nvim-web-devicons';
 -- Java JDT.LS
   'mfussenegger/nvim-jdtls';
+-- Syntax highlighting
+  {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
 }
 
 --------- hoob3rt/lualine.nvim ---------
@@ -197,6 +202,18 @@ map('n', 'crc', ':lua require(\'jdtls\').extract_constant()<CR>', mapOptSilent)
 map('v', 'crc', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', mapOptSilent)
 map('v', 'crm', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', mapOptSilent)
 --------- mfussenegger/nvim-jdtls ---------
+
+--------- nvim-treesitter/nvim-treesitter ---------
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true
+  },
+  indent = {
+    enable = true
+  }
+}
+--------- nvim-treesitter/nvim-treesitter ---------
 
 --------- Options ---------
 local indent = 2
