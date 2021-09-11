@@ -63,7 +63,6 @@ require 'paq' {
   'hrsh7th/cmp-buffer';
   'onsails/lspkind-nvim';
   'hrsh7th/cmp-nvim-lsp';
-  'neovim/nvim-lspconfig';
 -- Auto pairs
   'windwp/nvim-autopairs';
 -- Code analyze
@@ -181,40 +180,6 @@ require'nvim-web-devicons'.has_loaded()
 
 require'nvim-web-devicons'.get_icons()
 --------- kyazdani42/nvim-web-devicons ---------
-
---------- mfussenegger/nvim-jdtls ---------
-if fn.has('nvim-0.5') == 1 then
-  nvim_create_augroups({
-    lsp = {
-      'FileType java lua require(\'jdtls\').start_or_attach({cmd = {\'java-lsp.sh\'}})'
-    }
-  })
-end
-
--- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
-require'jdtls'.start_or_attach {
-  cmd = {
-    'java-lsp.sh',
-    os.getenv'HOME' .. '/.config/nvim/workspace/' .. fn.fnamemodify(fn.getcwd(), ':p:h:t')
-  },
-  root_dir = require'jdtls.setup'.find_root {
-    '.git', 'pom.xml', 'mvnw', 'gradle.build', 'gradlew'
-  }
-}
-
--- `code_action` is a superset of vim.lsp.buf.code_action and you'll be able to
--- use this mapping also with other language servers
-map('n', '<C-a>', ':lua require(\'jdtls\').code_action()<CR>', mapOptSilent)
-map('v', '<C-a>', '<Esc>:lua require(\'jdtls\').code_action(true)<CR>', mapOptSilent)
-map('n', '<Leader>r', ':lua require(\'jdtls\').code_action(false, \'refactor\')<CR>', mapOptSilent)
-
-map('n', '<C-o>', ':lua require\'jdtls\'.organize_imports()<CR>', mapOptSilent)
-map('n', 'crv', ':lua require(\'jdtls\').extract_variable()<CR>', mapOptSilent)
-map('v', 'crv', '<Esc>:lua require(\'jdtls\').extract_variable(true)<CR>', mapOptSilent)
-map('n', 'crc', ':lua require(\'jdtls\').extract_constant()<CR>', mapOptSilent)
-map('v', 'crc', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', mapOptSilent)
-map('v', 'crm', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', mapOptSilent)
---------- mfussenegger/nvim-jdtls ---------
 
 --------- nvim-treesitter/nvim-treesitter ---------
 require'nvim-treesitter.configs'.setup {
@@ -344,11 +309,40 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 --------- hrsh7th/nvim-cmp ---------
 
---------- neovim/nvim-lspconfig ---------
-require'lspconfig'.java_language_server.setup {
-  capabilities = capabilities,
+--------- mfussenegger/nvim-jdtls ---------
+if fn.has('nvim-0.5') == 1 then
+  nvim_create_augroups({
+    lsp = {
+      'FileType java lua require(\'jdtls\').start_or_attach({cmd = {\'java-lsp.sh\'}})'
+    }
+  })
+end
+
+-- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
+require'jdtls'.start_or_attach {
+  cmd = {
+    'java-lsp.sh',
+    os.getenv'HOME' .. '/.config/nvim/workspace/' .. fn.fnamemodify(fn.getcwd(), ':p:h:t')
+  },
+  root_dir = require'jdtls.setup'.find_root {
+    '.git', 'pom.xml', 'mvnw', 'gradle.build', 'gradlew'
+  },
+  capabilities = capabilities
 }
---------- neovim/nvim-lspconfig ---------
+
+-- `code_action` is a superset of vim.lsp.buf.code_action and you'll be able to
+-- use this mapping also with other language servers
+map('n', '<C-a>', ':lua require(\'jdtls\').code_action()<CR>', mapOptSilent)
+map('v', '<C-a>', '<Esc>:lua require(\'jdtls\').code_action(true)<CR>', mapOptSilent)
+map('n', '<Leader>r', ':lua require(\'jdtls\').code_action(false, \'refactor\')<CR>', mapOptSilent)
+
+map('n', '<C-o>', ':lua require\'jdtls\'.organize_imports()<CR>', mapOptSilent)
+map('n', 'crv', ':lua require(\'jdtls\').extract_variable()<CR>', mapOptSilent)
+map('v', 'crv', '<Esc>:lua require(\'jdtls\').extract_variable(true)<CR>', mapOptSilent)
+map('n', 'crc', ':lua require(\'jdtls\').extract_constant()<CR>', mapOptSilent)
+map('v', 'crc', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', mapOptSilent)
+map('v', 'crm', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', mapOptSilent)
+--------- mfussenegger/nvim-jdtls ---------
 
 --------- windwp/nvim-autopairs ---------
 require'nvim-autopairs'.setup {
@@ -365,6 +359,9 @@ require'nvim-autopairs.completion.cmp'.setup {
 --------- dense-analysis/ale ---------
 g.ale_completion_enabled = 0
 g.ale_lint_on_text_changed = 'never'
+map('n', '<Leader>gd', ':ALEGoToDefinition<CR>', mapOptSilent)
+map('n', '<Leader>gr', ':ALEFindReferences<CR>', mapOptSilent)
+map('n', '<Leader>gh', ':ALEHover<CR>', mapOptSilent)
 --------- dense-analysis/ale ---------
 
 --------- Options ---------
