@@ -342,6 +342,7 @@ map('v', 'crv', '<Esc>:lua require(\'jdtls\').extract_variable(true)<CR>', mapOp
 map('n', 'crc', ':lua require(\'jdtls\').extract_constant()<CR>', mapOptSilent)
 map('v', 'crc', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', mapOptSilent)
 map('v', 'crm', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', mapOptSilent)
+map('n', '<C-]>', ':lua vim.lsp.buf.definition()<CR>', mapOptSilent)
 --------- mfussenegger/nvim-jdtls ---------
 
 --------- windwp/nvim-autopairs ---------
