@@ -57,6 +57,13 @@ require 'paq' {
   };
 -- Terminal
   'akinsho/toggleterm.nvim';
+-- Completion
+  'hrsh7th/nvim-cmp';
+  'hrsh7th/vim-vsnip';
+  'hrsh7th/cmp-buffer';
+  'onsails/lspkind-nvim';
+  'hrsh7th/cmp-nvim-lsp';
+  'neovim/nvim-lspconfig';
 }
 
 --------- hoob3rt/lualine.nvim ---------
@@ -249,6 +256,95 @@ require'toggleterm'.setup {
   }
 }
 --------- akinsho/toggleterm.nvim ---------
+
+--------- onsails/lspkind-nvim ---------
+local lspkind = require'lspkind'
+lspkind.init {
+  -- override preset symbols
+  --
+  -- default: {}
+  symbol_map = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "塞",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = ""
+  },
+}
+--------- onsails/lspkind-nvim ---------
+
+--------- hrsh7th/nvim-cmp ---------
+local cmp = require'cmp'
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      fn['vsnip#anonymous'](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    }),
+    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      -- fancy icons and a name of kind
+      vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+
+      -- set a name for each source
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[Latex]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
+  sources = {
+    { name = 'buffer' },
+    { name = 'nvim_lsp' },
+  },
+}
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+--------- hrsh7th/nvim-cmp ---------
+
+--------- neovim/nvim-lspconfig ---------
+require'lspconfig'.java_language_server.setup {
+  capabilities = capabilities,
+}
+--------- neovim/nvim-lspconfig ---------
 
 --------- Options ---------
 local indent = 2
