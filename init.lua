@@ -64,6 +64,8 @@ require 'paq' {
   'onsails/lspkind-nvim';
   'hrsh7th/cmp-nvim-lsp';
   'neovim/nvim-lspconfig';
+-- Auto pairs
+  'windwp/nvim-autopairs';
 }
 
 --------- hoob3rt/lualine.nvim ---------
@@ -346,6 +348,18 @@ require'lspconfig'.java_language_server.setup {
 }
 --------- neovim/nvim-lspconfig ---------
 
+--------- windwp/nvim-autopairs ---------
+require'nvim-autopairs'.setup {
+}
+
+-- you need setup cmp first put this after cmp.setup()
+require'nvim-autopairs.completion.cmp'.setup {
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true, -- it will auto insert `(` after select function or method item
+  auto_select = true -- automatically select the first item
+}
+--------- windwp/nvim-autopairs ---------
+
 --------- Options ---------
 local indent = 2
 cmd 'set t_Co=256'
@@ -360,3 +374,8 @@ opt('o', 'termguicolors', true) -- True color support
 opt('o', 'wildmode', 'list:longest') -- Command-line completion mode
 opt('w', 'number', true) -- Print line number
 map('t', '<Esc>', '<C-\\><C-n>', mapOptSilent) -- Escape the Terminal mode
+nvim_create_augroups {
+  DisabledCommentInNewLine = {
+    'FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+  }
+}
