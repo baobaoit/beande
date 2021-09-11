@@ -343,6 +343,14 @@ map('n', 'crc', ':lua require(\'jdtls\').extract_constant()<CR>', mapOptSilent)
 map('v', 'crc', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', mapOptSilent)
 map('v', 'crm', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', mapOptSilent)
 map('n', '<C-]>', ':lua vim.lsp.buf.definition()<CR>', mapOptSilent)
+map('n', '<C-[>', ':lua vim.lsp.buf.declaration()<CR>', mapOptSilent)
+map('n', '<Leader>h', ':lua vim.lsp.buf.hover()<CR>', mapOptSilent)
+map('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>', mapOptSilent)
+map('n', '<Leader>sh', ':lua vim.lsp.buf.signature_help()<CR>', mapOptSilent)
+map('n', '<Leader>sh', ':lua vim.lsp.buf.signature_help()<CR>', mapOptSilent)
+map('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', mapOptSilent)
+map('n', '<Leader>gr', ':lua vim.lsp.buf.references()<CR>', mapOptSilent)
+map('n', '<Leader>f', ':lua vim.lsp.buf.formatting()<CR>', mapOptSilent)
 --------- mfussenegger/nvim-jdtls ---------
 
 --------- windwp/nvim-autopairs ---------
@@ -360,9 +368,6 @@ require'nvim-autopairs.completion.cmp'.setup {
 --------- dense-analysis/ale ---------
 g.ale_completion_enabled = 0
 g.ale_lint_on_text_changed = 'never'
-map('n', '<Leader>gd', ':ALEGoToDefinition<CR>', mapOptSilent)
-map('n', '<Leader>gr', ':ALEFindReferences<CR>', mapOptSilent)
-map('n', '<Leader>gh', ':ALEHover<CR>', mapOptSilent)
 --------- dense-analysis/ale ---------
 
 --------- Options ---------
