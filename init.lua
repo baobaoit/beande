@@ -66,6 +66,8 @@ require 'paq' {
   'neovim/nvim-lspconfig';
 -- Auto pairs
   'windwp/nvim-autopairs';
+-- Code analyze
+  'dense-analysis/ale';
 }
 
 --------- hoob3rt/lualine.nvim ---------
@@ -221,7 +223,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
   indent = {
-    enable = true
+    enable = false
   }
 }
 --------- nvim-treesitter/nvim-treesitter ---------
@@ -359,6 +361,11 @@ require'nvim-autopairs.completion.cmp'.setup {
   auto_select = true -- automatically select the first item
 }
 --------- windwp/nvim-autopairs ---------
+
+--------- dense-analysis/ale ---------
+g.ale_completion_enabled = 0
+g.ale_lint_on_text_changed = 'never'
+--------- dense-analysis/ale ---------
 
 --------- Options ---------
 local indent = 2
