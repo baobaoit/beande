@@ -49,7 +49,7 @@ require 'paq' {
   'kyazdani42/nvim-tree.lua';
   'kyazdani42/nvim-web-devicons';
 -- Java JDT.LS
-  'mfussenegger/nvim-jdtls';
+  'neovim/nvim-lspconfig';
 -- Syntax highlighting
   {
     'nvim-treesitter/nvim-treesitter',
@@ -281,8 +281,24 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
-    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+    ['<Tab>'] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      elseif luasnip.expand_or_jumpable() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+      else
+        fallback()
+      end
+    end,
+    ['<S-Tab>'] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      elseif luasnip.jumpable(-1) then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+      else
+        fallback()
+      end
+    end,
   },
   formatting = {
     format = function(entry, vim_item)
@@ -311,49 +327,91 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 --------- hrsh7th/nvim-cmp ---------
 
---------- mfussenegger/nvim-jdtls ---------
-if fn.has('nvim-0.5') == 1 then
-  nvim_create_augroups({
-    lsp = {
-      'FileType java lua require(\'jdtls\').start_or_attach({cmd = {\'java-lsp.sh\'}})'
-    }
-  })
+--------- neovim/nvim-lspconfig ---------
+local javaHome = os.getenv'JAVA_HOME'
+local jdtlsHome = os.getenv'JDTLS_HOME'
+local jdtlsWorkspace = os.getenv'HOME'..'/.config/nvim/workspace'
+local sysname = vim.loop.os_uname().sysname
+
+local function get_jdtls_config()
+  local folderConfig = 'config_linux'
+  if sysname:match 'Darwin' then
+    folderConfig = 'config_mac'
+  elseif sysname:match 'Windows' then
+    folderConfig = 'config_win'
+  end
+  return jdtlsHome..'/'..folderConfig
 end
 
--- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
-require'jdtls'.start_or_attach {
+local function get_jdtls_jar()
+  return fn.expand(jdtlsHome..'/plugins/org.eclipse.equinox.launcher_*.jar')
+end
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+end
+
+require'lspconfig'.jdtls.setup {
   cmd = {
-    'java-lsp.sh',
-    os.getenv'HOME' .. '/.config/nvim/workspace/' .. fn.fnamemodify(fn.getcwd(), ':p:h:t')
+    javaHome..'/bin/java',
+    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+    '-Dosgi.bundles.defaultStartLevel=4',
+    '-Declipse.product=org.eclipse.jdt.ls.core.product',
+    '-Dlog.protocol=true',
+    '-Dlog.level=ALL',
+    '-Xms1g',
+    '-Xmx2G',
+    '-jar', get_jdtls_jar(),
+    '-configuration', get_jdtls_config(),
+    '-data', jdtlsWorkspace,
+    '--add-modules=ALL-SYSTEM',
+    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+    '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
   },
-  root_dir = require'jdtls.setup'.find_root {
-    '.git', 'pom.xml', 'mvnw', 'gradle.build', 'gradlew'
+  init_options = {
+    jvm_args = {},
+    workspace = jdtlsWorkspace
+  },
+  settings = {
+    ['java.sources.organizeImports.starThreshold'] = 9999,
+    ['java.sources.organizeImports.staticStarThreshold'] = 9999
+  },
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
   },
   capabilities = capabilities
 }
-
--- `code_action` is a superset of vim.lsp.buf.code_action and you'll be able to
--- use this mapping also with other language servers
-map('n', '<C-a>', ':lua require(\'jdtls\').code_action()<CR>', mapOptSilent)
-map('v', '<C-a>', '<Esc>:lua require(\'jdtls\').code_action(true)<CR>', mapOptSilent)
-map('n', '<Leader>r', ':lua require(\'jdtls\').code_action(false, \'refactor\')<CR>', mapOptSilent)
-
-map('n', '<C-o>', ':lua require\'jdtls\'.organize_imports()<CR>', mapOptSilent)
-map('n', 'crv', ':lua require(\'jdtls\').extract_variable()<CR>', mapOptSilent)
-map('v', 'crv', '<Esc>:lua require(\'jdtls\').extract_variable(true)<CR>', mapOptSilent)
-map('n', 'crc', ':lua require(\'jdtls\').extract_constant()<CR>', mapOptSilent)
-map('v', 'crc', '<Esc>:lua require(\'jdtls\').extract_constant(true)<CR>', mapOptSilent)
-map('v', 'crm', '<Esc>:lua require(\'jdtls\').extract_method(true)<CR>', mapOptSilent)
-map('n', '<C-]>', ':lua vim.lsp.buf.definition()<CR>', mapOptSilent)
-map('n', '<C-[>', ':lua vim.lsp.buf.declaration()<CR>', mapOptSilent)
-map('n', '<Leader>h', ':lua vim.lsp.buf.hover()<CR>', mapOptSilent)
-map('n', '<Leader>gi', ':lua vim.lsp.buf.implementation()<CR>', mapOptSilent)
-map('n', '<Leader>sh', ':lua vim.lsp.buf.signature_help()<CR>', mapOptSilent)
-map('n', '<Leader>sh', ':lua vim.lsp.buf.signature_help()<CR>', mapOptSilent)
-map('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', mapOptSilent)
-map('n', '<Leader>gr', ':lua vim.lsp.buf.references()<CR>', mapOptSilent)
-map('n', '<Leader>f', ':lua vim.lsp.buf.formatting()<CR>', mapOptSilent)
---------- mfussenegger/nvim-jdtls ---------
+--------- neovim/nvim-lspconfig ---------
 
 --------- windwp/nvim-autopairs ---------
 require'nvim-autopairs'.setup {
