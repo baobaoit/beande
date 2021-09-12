@@ -50,6 +50,7 @@ require 'paq' {
   'kyazdani42/nvim-web-devicons';
 -- Java JDT.LS
   'neovim/nvim-lspconfig';
+  'mfussenegger/nvim-jdtls';
 -- Syntax highlighting
   {
     'nvim-treesitter/nvim-treesitter',
@@ -69,6 +70,8 @@ require 'paq' {
   'dense-analysis/ale';
 -- Buffer line
   'akinsho/bufferline.nvim';
+-- Debug
+  'mfussenegger/nvim-dap';
 }
 
 --------- hoob3rt/lualine.nvim ---------
@@ -347,6 +350,10 @@ local function get_jdtls_jar()
   return fn.expand(jdtlsHome..'/plugins/org.eclipse.equinox.launcher_*.jar')
 end
 
+local function get_java_debug_jar()
+  return fn.expand(os.getenv'HOME'..'/.config/nvim/java-debug/com.microsoft.java.debug.plugin-*.jar')
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -399,7 +406,10 @@ require'lspconfig'.jdtls.setup {
   },
   init_options = {
     jvm_args = {},
-    workspace = jdtlsWorkspace
+    workspace = jdtlsWorkspace,
+    bundles = {
+      get_java_debug_jar()
+    }
   },
   settings = {
     ['java.sources.organizeImports.starThreshold'] = 9999,
@@ -513,6 +523,41 @@ map('n', '<Leader>[b', ':BufferLineMovePrev<CR>', mapOptSilent)
 map('n', '<Leader>be', ':BufferLineSortByExtension<CR>', mapOptSilent)
 map('n', '<Leader>bd', ':BufferLineSortDirectory<CR>', mapOptSilent)
 --------- akinsho/bufferline.nvim ---------
+
+--------- mfussenegger/nvim-dap ---------
+local dap = require'dap'
+dap.adapters.java = function(callback, config)
+  require'jdtls.util'.execute_command({command = 'vscode.java.startDebugSession'}, function(err0, port)
+    assert(not err0, vim.inspect(err0))
+
+    callback({
+      type = 'server';
+      host = '127.0.0.1';
+      port = port;
+    })
+  end)
+end
+
+dap.configurations.java = {
+  {
+    type = 'java';
+    request = 'attach';
+    name = "Debug (Attach) - Remote";
+    hostName = "127.0.0.1";
+    port = 5005;
+  },
+}
+
+map('n', '<F5>', ':lua require\'dap\'.continue()<CR>', mapOptSilent)
+map('n', '<F10>', ':lua require\'dap\'.step_over()<CR>', mapOptSilent)
+map('n', '<F11>', ':lua require\'dap\'.step_into()<CR>', mapOptSilent)
+map('n', '<F12>', ':lua require\'dap\'.step_out()<CR>', mapOptSilent)
+map('n', '<Leader>b', ':lua require\'dap\'.toggle_breakpoint()<CR>', mapOptSilent)
+map('n', '<Leader>B', ':lua require\'dap\'.set_breakpoint(vim.fn.input(\'Breakpoint condition: \'))<CR>', mapOptSilent)
+map('n', '<Leader>lp', ':lua require\'dap\'.set_breakpoint(nil, nil, vim.fn.input(\'Log point message: \'))<CR>', mapOptSilent)
+map('n', '<Leader>dr', ':lua require\'dap\'.repl.toggle()<CR>', mapOptSilent)
+map('n', '<Leader>dl', ':lua require\'dap\'.run_last()<CR>', mapOptSilent)
+--------- mfussenegger/nvim-dap ---------
 
 --------- Options ---------
 local indent = 2
