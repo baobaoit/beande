@@ -7,3 +7,6 @@
 [submodule "pack/microsoft/java-debug"]
 	path = pack/microsoft/java-debug
 	url = https://github.com/microsoft/java-debug.git
+[submodule "pack/sumneko/lua-language-server"]
+	path = pack/sumneko/lua-language-server
+	url = https://github.com/sumneko/lua-language-server.git

@@ -64,6 +64,7 @@ require 'paq' {
   'hrsh7th/cmp-buffer';
   'onsails/lspkind-nvim';
   'hrsh7th/cmp-nvim-lsp';
+  'L3MON4D3/LuaSnip';
 -- Auto pairs
   'windwp/nvim-autopairs';
 -- Code analyze
@@ -93,7 +94,7 @@ require'lualine'.setup {
       {
         'filename',
         -- 0 = just filename, 1 = relative path, 2 = absolute path
-        path = 1 
+        path = 1
       }
     },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
@@ -127,9 +128,9 @@ require'lualine'.setup {
 --------- monsonjeremy/onedark.nvim ---------
 require'onedark'.setup {
   transparent = true,
-  sidebars = { "qf", "vista_kind", "terminal", "packer" },
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
-  colors = { hint = "orange", error = "#ff0000" } 
+  sidebars = { 'qf', 'vista_kind', 'terminal', 'packer' },
+-- Change the 'hint' color to the 'orange' color, and make the 'error' color bright red
+  colors = { hint = 'orange', error = '#ff0000' }
 }
 
 -- Load the colorscheme
@@ -174,9 +175,9 @@ require'nvim-web-devicons'.setup {
  -- DevIcon will be appended to `name`
  -- override = {
  --  zsh = {
- --    icon = "",
- --    color = "#428850",
- --    name = "Zsh"
+ --    icon = '',
+ --    color = '#428850',
+ --    name = 'Zsh'
  --  }
  -- };
  -- globally enable default icons (default to false)
@@ -191,7 +192,7 @@ require'nvim-web-devicons'.get_icons()
 
 --------- nvim-treesitter/nvim-treesitter ---------
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = 'maintained', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
   highlight = {
     enable = true
   },
@@ -206,9 +207,9 @@ require'toggleterm'.setup {
   -- size can be a number or function which is passed the current terminal
   -- size = 20 | function(term)
   size = function(term)
-    if term.direction == "horizontal" then
+    if term.direction == 'horizontal' then
       return 15
-    elseif term.direction == "vertical" then
+    elseif term.direction == 'vertical' then
       return vim.o.columns * 0.4
     end
   end,
@@ -227,8 +228,8 @@ require'toggleterm'.setup {
     -- width = <value>,
     -- height = <value>,
     highlights = {
-      border = "Normal",
-      background = "Normal",
+      border = 'Normal',
+      background = 'Normal',
     }
   }
 }
@@ -241,37 +242,38 @@ lspkind.init {
   --
   -- default: {}
   symbol_map = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
-    Field = "ﰠ",
-    Variable = "",
-    Class = "ﴯ",
-    Interface = "",
-    Module = "",
-    Property = "ﰠ",
-    Unit = "塞",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "פּ",
-    Event = "",
-    Operator = "",
-    TypeParameter = ""
+    Text = '',
+    Method = '',
+    Function = '',
+    Constructor = '',
+    Field = 'ﰠ',
+    Variable = '',
+    Class = 'ﴯ',
+    Interface = '',
+    Module = '',
+    Property = 'ﰠ',
+    Unit = '塞',
+    Value = '',
+    Enum = '',
+    Keyword = '',
+    Snippet = '',
+    Color = '',
+    File = '',
+    Reference = '',
+    Folder = '',
+    EnumMember = '',
+    Constant = '',
+    Struct = 'פּ',
+    Event = '',
+    Operator = '',
+    TypeParameter = ''
   },
 }
 --------- onsails/lspkind-nvim ---------
 
 --------- hrsh7th/nvim-cmp ---------
 local cmp = require'cmp'
+local luasnip = require'luasnip'
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -288,19 +290,19 @@ cmp.setup {
       select = true,
     }),
     ['<Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      if fn.pumvisible() == 1 then
+        fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
       elseif luasnip.expand_or_jumpable() then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+        fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
       else
         fallback()
       end
     end,
     ['<S-Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      if fn.pumvisible() == 1 then
+        fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
       elseif luasnip.jumpable(-1) then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+        fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
       else
         fallback()
       end
@@ -309,15 +311,15 @@ cmp.setup {
   formatting = {
     format = function(entry, vim_item)
       -- fancy icons and a name of kind
-      vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+      vim_item.kind = lspkind.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
 
       -- set a name for each source
       vim_item.menu = ({
-        buffer = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        luasnip = "[LuaSnip]",
-        nvim_lua = "[Lua]",
-        latex_symbols = "[Latex]",
+        buffer = '[Buffer]',
+        nvim_lsp = '[LSP]',
+        luasnip = '[LuaSnip]',
+        nvim_lua = '[Lua]',
+        latex_symbols = '[Latex]',
       })[entry.source.name]
       return vim_item
     end,
@@ -360,7 +362,7 @@ end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -427,6 +429,61 @@ require'lspconfig'.jdtls.setup {
   },
   capabilities = capabilities
 }
+
+
+local function get_lua_language_server_env()
+  local system_name = 'Linux'
+  if fn.has('mac') == 1 then
+    system_name = 'macOS'
+  elseif fn.has('win32') == 1 then
+    system_name = 'Windows'
+  end
+  return system_name
+end
+
+-- set the path to the sumneko installation;
+local sumneko_root_path = userHome..'/.config/nvim/lua-language-server'
+local sumneko_binary = sumneko_root_path..'/bin/'..get_lua_language_server_env()..'/lua-language-server'
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+require'lspconfig'.sumneko_lua.setup {
+  cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'};
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = {
+          vim.api.nvim_get_runtime_file("", true),
+          '${3rd}/love2d/library'
+        },
+        maxPreload = 2000,
+        checkThirdParty = false
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    }
+  },
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = capabilities
+}
 --------- neovim/nvim-lspconfig ---------
 
 --------- windwp/nvim-autopairs ---------
@@ -449,13 +506,13 @@ g.ale_lint_on_text_changed = 'never'
 --------- akinsho/bufferline.nvim ---------
 require'bufferline'.setup {
   options = {
-    numbers = "both", -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    numbers = 'both', -- 'none' | 'ordinal' | 'buffer_id' | 'both' | function({ ordinal, id, lower, raise }): string,
     --- @deprecated, please specify numbers as a function to customize the styling
-    -- number_style = "superscript" | "subscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
-    close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
-    right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
-    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
+    -- number_style = 'superscript' | 'subscript' | '' | { 'none', 'subscript' }, -- buffer_id at index 1, ordinal at index 2
+    close_command = 'bdelete! %d',       -- can be a string | function, see 'Mouse actions'
+    right_mouse_command = 'bdelete! %d', -- can be a string | function, see 'Mouse actions'
+    left_mouse_command = 'buffer %d',    -- can be a string | function, see 'Mouse actions'
+    middle_mouse_command = nil,          -- can be a string | function, see 'Mouse actions'
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
@@ -469,7 +526,7 @@ require'bufferline'.setup {
     --- Please note some names can/will break the
     --- bufferline so use this at your discretion knowing that it has
     --- some limitations that will *NOT* be fixed.
-    -- name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+    -- name_formatter = function(buf)  -- buf contains a 'name', 'path' and 'bufnr'
       -- remove extension from markdown files for example
       -- if buf.name:match('%.md') then
       --   return vim.fn.fnamemodify(buf.name, ':t:r')
@@ -478,28 +535,28 @@ require'bufferline'.setup {
     max_name_length = 18,
     max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
     tab_size = 18,
-    diagnostics = false, -- false | "nvim_lsp" | "coc",
+    diagnostics = false, -- false | 'nvim_lsp' | 'coc',
     diagnostics_update_in_insert = false,
     -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
-    --   return "("..count..")"
+    --   return '('..count..')'
     -- end,
     -- NOTE: this will be called a lot so don't do any heavy processing here
     -- custom_filter = function(buf_number)
       -- filter out filetypes you don't want to see
-      -- if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
+      -- if vim.bo[buf_number].filetype ~= '<i-dont-want-to-see-this>' then
       --   return true
       -- end
       -- filter out by buffer name
-      -- if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
+      -- if vim.fn.bufname(buf_number) ~= '<buffer-name-I-dont-want>' then
       --   return true
       -- end
       -- filter out based on arbitrary rules
       -- e.g. filter out vim wiki buffer from tabline in your work repo
-      -- if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
+      -- if vim.fn.getcwd() == '<work-repo>' and vim.bo[buf_number].filetype ~= 'wiki' then
       --   return true
       -- end
     -- end,
-    offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "left"}}, -- {{filetype = "NvimTree", text = "File Explorer" | function , text_align = "left" | "center" | "right"}},
+    offsets = {{filetype = 'NvimTree', text = 'File Explorer', text_align = 'left'}}, -- {{filetype = 'NvimTree', text = 'File Explorer' | function , text_align = 'left' | 'center' | 'right'}},
     show_buffer_icons = true, -- true | false, -- disable filetype icons for buffers
     show_buffer_close_icons = true, -- true | false,
     show_close_icon = true, -- true | false,
@@ -507,7 +564,7 @@ require'bufferline'.setup {
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = "thin", -- "slant" | "thick" | "thin" | { 'any', 'any' },
+    separator_style = 'thin', -- 'slant' | 'thick' | 'thin' | { 'any', 'any' },
     enforce_regular_tabs = false, -- false | true,
     always_show_bufferline = true, -- true | false,
     sort_by = 'extension', -- 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
@@ -532,7 +589,7 @@ map('n', '<Leader>bd', ':BufferLineSortDirectory<CR>', mapOptSilent)
 
 --------- mfussenegger/nvim-dap ---------
 local dap = require'dap'
-dap.adapters.java = function(callback, config)
+dap.adapters.java = function(callback, _)
   require'jdtls.util'.execute_command({command = 'vscode.java.startDebugSession'}, function(err0, port)
     assert(not err0, vim.inspect(err0))
 
@@ -548,8 +605,8 @@ dap.configurations.java = {
   {
     type = 'java';
     request = 'attach';
-    name = "Debug (Attach) - Remote";
-    hostName = "127.0.0.1";
+    name = 'Debug (Attach) - Remote';
+    hostName = '127.0.0.1';
     port = 5005;
   },
 }
