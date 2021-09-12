@@ -484,6 +484,14 @@ require'lspconfig'.sumneko_lua.setup {
   },
   capabilities = capabilities
 }
+
+require'lspconfig'.vimls.setup {
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = capabilities
+}
 --------- neovim/nvim-lspconfig ---------
 
 --------- windwp/nvim-autopairs ---------
