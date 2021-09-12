@@ -333,7 +333,8 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 --------- neovim/nvim-lspconfig ---------
 local javaHome = os.getenv'JAVA_HOME'
 local jdtlsHome = os.getenv'JDTLS_HOME'
-local jdtlsWorkspace = os.getenv'HOME'..'/.config/nvim/workspace'
+local userHome = os.getenv'HOME'
+local jdtlsWorkspace = userHome..'/.config/nvim/workspace'
 local sysname = vim.loop.os_uname().sysname
 
 local function get_jdtls_config()
@@ -351,7 +352,7 @@ local function get_jdtls_jar()
 end
 
 local function get_java_debug_jar()
-  return fn.expand(os.getenv'HOME'..'/.config/nvim/java-debug/com.microsoft.java.debug.plugin-*.jar')
+  return fn.expand(userHome..'/.config/nvim/java-debug/com.microsoft.java.debug.plugin-*.jar')
 end
 
 -- Use an on_attach function to only map the following keys
@@ -405,7 +406,9 @@ require'lspconfig'.jdtls.setup {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
   },
   init_options = {
-    jvm_args = {},
+    jvm_args = {
+      -- '-javaagent:'..userHome..'/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar -Xbootclasspath/a:'..userHome..'/.m2/repository/org/projectlombok/lombok/1.18.21/lombok-1.18.20.jar'
+    },
     workspace = jdtlsWorkspace,
     bundles = {
       get_java_debug_jar()
