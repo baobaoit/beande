@@ -72,6 +72,9 @@ require 'paq' {
   'akinsho/bufferline.nvim';
 -- Debug
   'mfussenegger/nvim-dap';
+-- Telescope
+  'nvim-lua/plenary.nvim';
+  'nvim-telescope/telescope.nvim';
 }
 
 --------- hoob3rt/lualine.nvim ---------
@@ -562,11 +565,19 @@ map('n', '<Leader>dr', ':lua require\'dap\'.repl.toggle()<CR>', mapOptSilent)
 map('n', '<Leader>dl', ':lua require\'dap\'.run_last()<CR>', mapOptSilent)
 --------- mfussenegger/nvim-dap ---------
 
+--------- nvim-telescope/telescope.nvim ---------
+map('n', '<Leader>ff', ':lua require(\'telescope.builtin\').find_files()<CR>', mapOptSilent)
+map('n', '<Leader>fg', ':lua require(\'telescope.builtin\').live_grep()<CR>', mapOptSilent)
+map('n', '<Leader>fb', ':lua require(\'telescope.builtin\').buffers()<CR>', mapOptSilent)
+map('n', '<Leader>fh', ':lua require(\'telescope.builtin\').help_tags()<CR>', mapOptSilent)
+--------- nvim-telescope/telescope.nvim ---------
+
 --------- Options ---------
 local indent = 2
 cmd 'set t_Co=256'
 cmd 'syntax on'
 cmd 'filetype indent plugin on'
+cmd 'set path+=**'
 opt('b', 'expandtab', true) -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent) -- Size of an indent
 opt('b', 'smartindent', true) -- Insert indents automatically
