@@ -10,3 +10,6 @@
 [submodule "pack/sumneko/lua-language-server"]
 	path = pack/sumneko/lua-language-server
 	url = https://github.com/sumneko/lua-language-server.git
+[submodule "pack/eclipse/lemminx"]
+	path = pack/eclipse/lemminx
+	url = https://github.com/eclipse/lemminx.git
