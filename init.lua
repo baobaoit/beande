@@ -500,6 +500,15 @@ require'lspconfig'.yamlls.setup {
   },
   capabilities = capabilities
 }
+
+require'lspconfig'.lemminx.setup {
+  cmd = { "lemminx" };
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = capabilities
+}
 --------- neovim/nvim-lspconfig ---------
 
 --------- windwp/nvim-autopairs ---------
