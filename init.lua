@@ -1,40 +1,14 @@
+require'general'
+require'bootstrap'
+
 --------- Helpers ---------
-local cmd = vim.cmd -- vim commands
 local fn = vim.fn -- vim functions
 local g = vim.g -- global variables
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-local api = vim.api
-
-local function nvim_create_augroups(definitions)
-  for group_name, definition in pairs(definitions) do
-    api.nvim_command('augroup '..group_name)
-    api.nvim_command('autocmd!')
-    for _, def in ipairs(definition) do
-      -- if type(def) == 'table' and type(def[#def]) == 'function' then
-      --   def[#def] = lua_callback(def[#def])
-      -- end
-      local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
-      api.nvim_command(command)
-    end
-    api.nvim_command('augroup END')
-  end
-end
-
-local function opt(scope, key, value)
-  scopes[scope][key] = value
-  if scope ~= 'o' then scopes['o'][key] = value end
-end
 
 local function map(mode, lhs, rhs, opts) -- noremap
   local options = {noremap = true}
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-local install_path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
 end
 
 --------- Plugins ---------
@@ -134,7 +108,7 @@ require'onedark'.setup {
 }
 
 -- Load the colorscheme
-cmd[[colorscheme onedark]]
+vim.cmd[[colorscheme onedark]]
 --------- monsonjeremy/onedark.nvim ---------
 
 local mapOptSilent = { silent = true }
@@ -218,7 +192,7 @@ require'toggleterm'.setup {
   shade_terminals = true,
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   persist_size = true,
-  direction = 'float', -- 'vertical' | 'horizontal' | 'window' | 'float',
+  direction = 'horizontal', -- 'vertical' | 'horizontal' | 'window' | 'float',
   float_opts = {
     -- The border key is *almost* the same as 'nvim_open_win'
     -- see :h nvim_open_win for details on borders however
@@ -589,7 +563,7 @@ require'bufferline'.setup {
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = 'thin', -- 'slant' | 'thick' | 'thin' | { 'any', 'any' },
+    separator_style = 'thick', -- 'slant' | 'thick' | 'thin' | { 'any', 'any' },
     enforce_regular_tabs = false, -- false | true,
     always_show_bufferline = true, -- true | false,
     sort_by = 'extension', -- 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
@@ -655,22 +629,3 @@ map('n', '<Leader>fh', ':lua require(\'telescope.builtin\').help_tags()<CR>', ma
 --------- nvim-telescope/telescope.nvim ---------
 
 --------- Options ---------
-local indent = 2
-cmd 'set t_Co=256'
-cmd 'syntax on'
-cmd 'filetype indent plugin on'
-cmd 'set path+=**'
-opt('b', 'expandtab', true) -- Use spaces instead of tabs
-opt('b', 'shiftwidth', indent) -- Size of an indent
-opt('b', 'smartindent', true) -- Insert indents automatically
-opt('b', 'tabstop', indent) -- Number of spaces tabs count for
-opt('o', 'mouse', 'a') -- Enable mouse
-opt('o', 'termguicolors', true) -- True color support
-opt('o', 'wildmode', 'list:longest') -- Command-line completion mode
-opt('w', 'number', true) -- Print line number
-map('t', '<Esc>', '<C-\\><C-n>', mapOptSilent) -- Escape the Terminal mode
-nvim_create_augroups {
-  DisabledCommentInNewLine = {
-    'FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
-  }
-}
