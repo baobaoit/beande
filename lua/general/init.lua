@@ -2,33 +2,43 @@
  ╔═════════════════════════════╗
  ║ General settings for Neovim ║
  ╚═════════════════════════════╝
--- ]]
-local o = vim.o
-local bo = vim.bo
-local wo = vim.wo
-local go = vim.go
+--]]
 local cmd = vim.cmd
+local go = vim.go
+local o = vim.o
+local wo = vim.wo
 
-o['hidden']=true -- Required to keep multiple buffers open multiple buffers
+cmd[[filetype plugin indent on]]
 cmd[[set nowrap]] -- Display long lines as just one line
-o['mouse']='a' -- Enable your mouse
-go['splitbelow']=true -- Horizontal splits will automatically be below
-go['splitright']=true -- Vertical splits will automatically be to the right
-cmd[[set t_Co=256]] -- Support 256 colors
-bo['tabstop']=2 -- Insert 2 spaces for a tab
-bo['shiftwidth']=2 -- Change the number of space characters inserted for indentation
-bo['expandtab']=true -- Converts tabs to spaces
-bo['smartindent']=true -- Makes indenting smart
-wo['number']=true -- Line numbers
-o['updatetime']=300 -- Faster completion
-o['timeoutlen']=500 -- By default timeoutlen is 1000 ms
 cmd[[set path+=**]]
-o['termguicolors']=true -- True color support
-o['wildmode']='list:longest' -- Command-line completion mode
+cmd[[set t_Co=256]] -- Support 256 colors
+go['splitbelow'] = true -- Horizontal splits will automatically be below
+go['splitright'] = true -- Vertical splits will automatically be to the right
+o['hidden'] = true -- Required to keep multiple buffers open multiple buffers
+o['mouse'] = 'a' -- Enable your mouse
+o['termguicolors'] = true -- True color support
+o['timeoutlen'] = 500 -- By default timeoutlen is 1000 ms
+o['updatetime'] = 300 -- Faster completion
+o['wildmode'] = 'list:longest' -- Command-line completion mode
+wo['number'] = true -- Line numbers
 
 --[[
  ╔════════════════════════╗
  ║ Key mapping for Neovim ║
  ╚════════════════════════╝
--- ]]
+--]]
 require'general.mapping'
+
+--[[
+ ╔═════════════════════╗
+ ║ Augroups for Neovim ║
+ ╚═════════════════════╝
+--]]
+require'utils'.augroups {
+  DisableAutomaticCommentInNewLine = {
+    'FileType * setlocal formatoptions-=cro'
+  },
+  SetTab = {
+    'FileType * setlocal expandtab shiftwidth=2 tabstop=2 smartindent'
+  }
+}
