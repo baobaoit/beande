@@ -24,6 +24,7 @@ require 'paq' {
 -- Completion
   'L3MON4D3/LuaSnip';
   'hrsh7th/cmp-buffer';
+  'saadparwaiz1/cmp_luasnip';
   'hrsh7th/cmp-nvim-lsp';
   'onsails/lspkind-nvim';
   'hrsh7th/nvim-cmp';

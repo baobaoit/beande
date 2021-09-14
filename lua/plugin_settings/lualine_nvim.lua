@@ -45,5 +45,6 @@ require'lualine'.setup {
     -- Lualine extensions change statusline appearance for a window/buffer with specified filetypes.
     -- By default no extension are loaded to improve performance.
     -- Available extensions: 'chadtree','fugitive','fzf','nerdtree','nvim-tree','quickfix'
+    'nvim-tree'
   }
 }
