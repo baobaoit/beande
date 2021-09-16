@@ -26,7 +26,7 @@ dap.configurations.java = {
   },
 }
 
-local map = require'utils'.map
+local map = require('utils').map
 
 map('n', '<F5>', ':lua require\'dap\'.continue()<CR>')
 map('n', '<F10>', ':lua require\'dap\'.step_over()<CR>')

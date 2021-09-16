@@ -3,7 +3,7 @@
  ║ Settings for onsails/lspkind-nvim ║
  ╚═══════════════════════════════════╝
 --]]
-require'lspkind'.init {
+require('lspkind').init {
   -- override preset symbols
   --
   -- default: {}

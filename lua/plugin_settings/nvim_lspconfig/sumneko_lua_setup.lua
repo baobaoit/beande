@@ -5,11 +5,11 @@
 --]]
 local user_home = os.getenv'HOME'
 local utils = require'utils'
-local plugin_settings_nvim_lspconfig_path = utils.get_plugin_settings_folder_name()..'.'..utils.get_nvim_lspconfig_folder_name()
-local get_lua_language_server_env = require(plugin_settings_nvim_lspconfig_path..'.helper').get_lua_language_server_env
+local plugin_settings_nvim_lspconfig_path = utils.get_plugin_settings_folder_name() .. '.' .. utils.get_nvim_lspconfig_folder_name()
+local get_lua_language_server_env = require(plugin_settings_nvim_lspconfig_path .. '.helper').get_lua_language_server_env
 -- set the path to the sumneko installation;
-local sumneko_root_path = user_home..'/.config/nvim/lua-language-server'
-local sumneko_binary = sumneko_root_path..'/bin/'..get_lua_language_server_env()..'/lua-language-server'
+local sumneko_root_path = user_home .. '/.config/nvim/lua-language-server'
+local sumneko_binary = sumneko_root_path .. '/bin/' .. get_lua_language_server_env() .. '/lua-language-server'
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')

@@ -3,7 +3,7 @@
  ║ Settings for akinsho/bufferline.nvim ║
  ╚══════════════════════════════════════╝
 --]]
-require'bufferline'.setup {
+require('bufferline').setup {
   options = {
     numbers = 'both', -- 'none' | 'ordinal' | 'buffer_id' | 'both' | function({ ordinal, id, lower, raise }): string,
     --- @deprecated, please specify numbers as a function to customize the styling
@@ -73,7 +73,7 @@ require'bufferline'.setup {
   }
 }
 
-local map = require'utils'.map
+local map = require('utils').map
 
 -- These commands will navigate through buffers in order regardless of which mode you are using
 -- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering

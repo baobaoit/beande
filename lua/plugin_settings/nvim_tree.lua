@@ -4,7 +4,7 @@
  ╚═══════════════════════════════════════╝
 --]]
 local g = vim.g
-local map = require'utils'.map
+local map = require('utils').map
 
 -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
 g.nvim_tree_auto_open = 1

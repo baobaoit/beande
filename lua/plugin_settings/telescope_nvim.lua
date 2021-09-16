@@ -3,7 +3,7 @@
  ║ Settings for nvim-telescope/telescope.nvim ║
  ╚════════════════════════════════════════════╝
 --]]
-local map = require'utils'.map
+local map = require('utils').map
 
 map('n', '<Leader>ff', ':lua require(\'telescope.builtin\').find_files()<CR>')
 map('n', '<Leader>fg', ':lua require(\'telescope.builtin\').live_grep()<CR>')

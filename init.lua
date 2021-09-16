@@ -52,15 +52,15 @@ require 'paq' {
 }
 
 --[[
- ╔════════════════════════════╗
- ║ Plugin settings for Neovim ║
- ╚════════════════════════════╝
---]]
-require'plugin_settings'
-
---[[
  ╔═════════════════════════════╗
  ║ General settings for Neovim ║
  ╚═════════════════════════════╝
 --]]
 require'general'
+
+--[[
+ ╔════════════════════════════╗
+ ║ Plugin settings for Neovim ║
+ ╚════════════════════════════╝
+--]]
+require'plugin_settings'

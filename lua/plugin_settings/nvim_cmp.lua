@@ -43,7 +43,7 @@ cmp.setup {
   formatting = {
     format = function(entry, vim_item)
       -- fancy icons and a name of kind
-      vim_item.kind = require'lspkind'.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
+      vim_item.kind = require('lspkind').presets.default[vim_item.kind] .. ' ' .. vim_item.kind
 
       -- set a name for each source
       vim_item.menu = ({

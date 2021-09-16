@@ -75,15 +75,15 @@ function M.get_jdtls_config()
   elseif sys_name:match 'Windows' then
     folder_config = 'config_win'
   end
-  return jdtls_home..'/'..folder_config
+  return jdtls_home .. '/' .. folder_config
 end
 
 function M.get_jdtls_jar()
-  return fn.expand(jdtls_home..'/plugins/org.eclipse.equinox.launcher_*.jar')
+  return fn.expand(jdtls_home .. '/plugins/org.eclipse.equinox.launcher_*.jar')
 end
 
 function M.get_java_debug_jar()
-  return fn.expand(user_home..'/.config/nvim/java-debug/com.microsoft.java.debug.plugin-*.jar')
+  return fn.expand(user_home .. '/.config/nvim/java-debug/com.microsoft.java.debug.plugin-*.jar')
 end
 
 function M.get_lua_language_server_env()

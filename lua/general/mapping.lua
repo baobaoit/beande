@@ -3,7 +3,7 @@
  ║ General mapping for Neovim ║
  ╚════════════════════════════╝
 --]]
-local map = require'utils'.map
+local map = require('utils').map
 
 --[[
  ╔══════════╗
@@ -27,3 +27,4 @@ map('n', '<Tab>', ':bn<CR>') -- Tab to next buffer
  ╚═══════╝
 --]]
 map('n', '<C-s>', ':w<CR>', {silent = false})
+map('i', '<C-s>', '<Esc>:w<CR>', {silent = false})

@@ -23,6 +23,7 @@ require'toggleterm'.setup {
   open_mapping = [[<C-\>]],
   persist_size = true,
   shade_terminals = true,
+  shell = vim.o.shell,
   -- size can be a number or function which is passed the current terminal
   -- size = 20 | function(term)
   size = function(term)
