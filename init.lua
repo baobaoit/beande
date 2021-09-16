@@ -17,6 +17,8 @@ require "paq" {
   "dense-analysis/ale";
 -- Buffer line
   "akinsho/bufferline.nvim";
+-- Git
+  "lewis6991/gitsigns.nvim";
 -- Status bar
   "hoob3rt/lualine.nvim";
 -- Auto pairs

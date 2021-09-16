@@ -9,6 +9,7 @@ utils.require_plugins {
   [plugin_settings_folder_name] = {
     "ale",
     "bufferline_nvim",
+    "gitsigns_nvim",
     "lspkind_nvim",
     "lualine_nvim",
     "nvim_autopairs",
