@@ -3,7 +3,7 @@
  ║ Settings for akinsho/bufferline.nvim ║
  ╚══════════════════════════════════════╝
 --]]
-require('bufferline').setup {
+require("bufferline").setup {
   options = {
     numbers = 'both', -- 'none' | 'ordinal' | 'buffer_id' | 'both' | function({ ordinal, id, lower, raise }): string,
     --- @deprecated, please specify numbers as a function to customize the styling
@@ -73,17 +73,17 @@ require('bufferline').setup {
   }
 }
 
-local map = require('utils').map
+local map = require("utils").map
 
 -- These commands will navigate through buffers in order regardless of which mode you are using
 -- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-map('n', 'b]', ':BufferLineCycleNext<CR>')
-map('n', '[b', ':BufferLineCyclePrev<CR>')
+map("n", "b]", ":BufferLineCycleNext<CR>")
+map("n", "[b", ":BufferLineCyclePrev<CR>")
 
 -- These commands will move the current buffer backwards or forwards in the bufferline
-map('n', '<Leader>b]', ':BufferLineMoveNext<CR>')
-map('n', '<Leader>[b', ':BufferLineMovePrev<CR>')
+map("n", "<Leader>b]", ":BufferLineMoveNext<CR>")
+map("n", "<Leader>[b", ":BufferLineMovePrev<CR>")
 
 -- These commands will sort buffers by directory, languages
-map('n', '<Leader>be', ':BufferLineSortByExtension<CR>')
-map('n', '<Leader>bd', ':BufferLineSortDirectory<CR>')
+map("n", "<Leader>be", ":BufferLineSortByExtension<CR>")
+map("n", "<Leader>bd", ":BufferLineSortDirectory<CR>")

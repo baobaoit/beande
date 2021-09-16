@@ -6,4 +6,4 @@
 local g = vim.g
 
 g.ale_completion_enabled = 0
-g.ale_lint_on_text_changed = 'never'
+g.ale_lint_on_text_changed = "never"

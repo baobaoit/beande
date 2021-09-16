@@ -3,7 +3,7 @@
  ║ Settings for akinsho/toggleterm.nvim ║
  ╚══════════════════════════════════════╝
 --]]
-require'toggleterm'.setup {
+require("toggleterm").setup {
   direction = 'horizontal', -- 'vertical' | 'horizontal' | 'window' | 'float',
   float_opts = {
     -- The border key is *almost* the same as 'nvim_open_win'

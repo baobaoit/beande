@@ -3,7 +3,7 @@
  ║ Settings for hoob3rt/lualine.nvim ║
  ╚═══════════════════════════════════╝
 --]]
-require('lualine').setup {
+require("lualine").setup {
   options = {
     icons_enabled = true,
     theme = 'onedark',

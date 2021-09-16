@@ -3,7 +3,7 @@
  ║ Settings for kyazdani42/nvim-web-devicons ║
  ╚═══════════════════════════════════════════╝
 --]]
-require('nvim-web-devicons').setup {
+require("nvim-web-devicons").setup {
  -- your personnal icons can go here (to override)
  -- DevIcon will be appended to `name`
  -- override = {
@@ -18,6 +18,6 @@ require('nvim-web-devicons').setup {
  default = true;
 }
 
-require('nvim-web-devicons').has_loaded()
+require("nvim-web-devicons").has_loaded()
 
-require('nvim-web-devicons').get_icons()
+require("nvim-web-devicons").get_icons()

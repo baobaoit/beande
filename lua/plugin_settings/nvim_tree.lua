@@ -4,7 +4,7 @@
  ╚═══════════════════════════════════════╝
 --]]
 local g = vim.g
-local map = require('utils').map
+local map = require("utils").map
 
 -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
 g.nvim_tree_auto_open = 1
@@ -27,9 +27,9 @@ g.nvim_tree_indent_markers = 1
 -- 0 by default, closes the tree when you open a file
 g.nvim_tree_quit_on_open = 1
 
-map('n', '<C-b>', ':NvimTreeToggle<CR>')
-map('n', '<Leader>n', ':NvimTreeFindFile<CR>')
-map('n', '<Leader>r', ':NvimTreeRefresh<CR>')
+map("n", "<C-b>", ":NvimTreeToggle<CR>")
+map("n", "<Leader>n", ":NvimTreeFindFile<CR>")
+map("n", "<Leader>r", ":NvimTreeRefresh<CR>")
 
 -- a list of groups can be found at `:help nvim_tree_highlight`
 -- cmd[[au VimEnter * highlight NvimTreeFolderIcon guibg=blue]]
