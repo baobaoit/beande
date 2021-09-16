@@ -14,6 +14,7 @@ utils.require_plugins {
     "nvim_autopairs",
     "nvim_cmp",
     "nvim_dap",
+    "nvim_dap_ui",
     "nvim_lspconfig",
     "nvim_tree",
     "nvim_treesitter",

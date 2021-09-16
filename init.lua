@@ -31,6 +31,7 @@ require "paq" {
   "hrsh7th/vim-vsnip";
 -- Debug
   "mfussenegger/nvim-dap";
+  "rcarriga/nvim-dap-ui";
 -- File explorer
   "kyazdani42/nvim-tree.lua";
   "kyazdani42/nvim-web-devicons";
