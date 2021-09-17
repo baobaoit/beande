@@ -21,6 +21,7 @@ utils.require_plugins {
     "nvim_treesitter",
     "nvim_web_devicons",
     "onedark_nvim",
+    "symbols_outline_nvim",
     "telescope_nvim",
     "toggleterm_nvim",
   }

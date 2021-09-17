@@ -38,6 +38,8 @@ return {
   },
   settings = {
     ["java.sources.organizeImports.starThreshold"] = 9999,
-    ["java.sources.organizeImports.staticStarThreshold"] = 9999
+    ["java.sources.organizeImports.staticStarThreshold"] = 9999,
+    ["java.implementationsCodeLens.enabled"] = true,
+    ["java.referencesCodeLens.enabled"] = true
   },
 }

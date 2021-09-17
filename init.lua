@@ -40,6 +40,8 @@ require "paq" {
   "kyazdani42/nvim-web-devicons";
 -- Theme
   "monsonjeremy/onedark.nvim";
+-- Symbols outline
+  "simrat39/symbols-outline.nvim";
 -- Java JDT.LS
   "neovim/nvim-lspconfig";
   "mfussenegger/nvim-jdtls";
