@@ -19,6 +19,7 @@ require "paq" {
   "akinsho/bufferline.nvim";
 -- Git
   "lewis6991/gitsigns.nvim";
+  "tpope/vim-fugitive";
 -- Status bar
   "hoob3rt/lualine.nvim";
 -- Auto pairs
