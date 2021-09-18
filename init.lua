@@ -18,6 +18,7 @@ require "paq" {
 -- Buffer line
   "akinsho/bufferline.nvim";
 -- Git
+  "sindrets/diffview.nvim";
   "lewis6991/gitsigns.nvim";
   "tpope/vim-fugitive";
 -- Status bar
