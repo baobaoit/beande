@@ -7,6 +7,7 @@ local utils = require "utils"
 local plugin_settings_folder_name = utils.get_plugin_settings_folder_name()
 utils.require_plugins {
   [plugin_settings_folder_name] = {
+    "impatient_nvim",
     "ale",
     "bufferline_nvim",
     "diffview_nvim",
