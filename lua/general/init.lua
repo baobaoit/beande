@@ -10,7 +10,7 @@ local wo = vim.wo -- behaves like :setlocal for window-local options
 
 cmd [[filetype plugin indent on]]
 -- cmd [[set nowrap]] -- Display long lines as just one line
-cmd [[set path+=**]]
+-- cmd [[set path+=**]]
 cmd [[set t_Co=256]] -- Support 256 colors
 go["splitbelow"] = true -- Horizontal splits will automatically be below
 go["splitright"] = true -- Vertical splits will automatically be to the right

@@ -31,7 +31,6 @@ require "paq" {
   "hrsh7th/cmp-nvim-lsp";
   "onsails/lspkind-nvim";
   "hrsh7th/nvim-cmp";
-  "hrsh7th/vim-vsnip";
 -- Debug
   "mfussenegger/nvim-dap";
   "rcarriga/nvim-dap-ui";

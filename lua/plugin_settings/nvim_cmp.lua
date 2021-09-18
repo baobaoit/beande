@@ -9,7 +9,7 @@ local luasnip = require "luasnip"
 cmp.setup {
   snippet = {
     expand = function(args)
-      fn["vsnip#anonymous"](args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = {

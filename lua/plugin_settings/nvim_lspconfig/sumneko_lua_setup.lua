@@ -42,6 +42,9 @@ return {
       telemetry = {
         enable = false,
       },
+      completion = {
+        workspaceWord = false
+      },
     }
   },
 }
