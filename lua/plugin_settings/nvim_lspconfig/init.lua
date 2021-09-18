@@ -10,7 +10,7 @@ local nvim_lspconfig_folder_name = utils.get_nvim_lspconfig_folder_name()
 local plugin_settings_nvim_lspconfig_path = plugin_settings_folder_name .. "." .. nvim_lspconfig_folder_name
 local helper = require(plugin_settings_nvim_lspconfig_path .. ".helper")
 local on_attach_customize = helper.on_attach
-local capabilities_customize = helper.get_nvim_cmp_capabilities()
+local capabilities_customize = helper.get_extended_capabilities()
 local servers = {
   "jdtls",
   "sumneko_lua",

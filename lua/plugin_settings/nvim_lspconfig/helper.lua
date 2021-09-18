@@ -5,10 +5,12 @@
 --]]
 local M = {}
 
-function M.get_nvim_cmp_capabilities()
+function M.get_extended_capabilities()
   -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
   -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
   return capabilities
 end
 
