@@ -22,6 +22,14 @@ map('n', '<S-Tab>', ':bp<CR>') -- Shift-Tab to previous buffer
 map('n', '<Tab>', ':bn<CR>') -- Tab to next buffer
 
 --[[
+ ╔═══════════════════════════════╗
+ ║ Switch Neovim's tab in normal ║
+ ╚═══════════════════════════════╝
+--]]
+map('n', '<Space>h', 'gT') -- Shift-Tab to previous buffer
+map('n', '<Space>l', 'gt') -- Tab to next buffer
+
+--[[
  ╔════════════════╗
  ║ Save and quit  ║
  ╚════════════════╝

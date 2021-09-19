@@ -23,9 +23,9 @@ return {
     "-jar", helper.get_jdtls_jar(),
     "-configuration", helper.get_jdtls_config(),
     "-data", jdtls_workspace,
-    "--add-modules=ALL-SYSTEM",
-    "--add-opens", "java.base/java.util=ALL-UNNAMED",
-    "--add-opens", "java.base/java.lang=ALL-UNNAMED"
+    -- "--add-modules=ALL-SYSTEM",
+    -- "--add-opens", "java.base/java.util=ALL-UNNAMED",
+    -- "--add-opens", "java.base/java.lang=ALL-UNNAMED"
   },
   init_options = {
     jvm_args = {
