@@ -1,0 +1,15 @@
+[submodule "pack/eclipse.jdt.ls"]
+	path = pack/eclipse.jdt.ls
+	url = https://github.com/eclipse/eclipse.jdt.ls.git
+[submodule "pack/google-java-format"]
+	path = pack/google-java-format
+	url = https://github.com/google/google-java-format.git
+[submodule "pack/microsoft/java-debug"]
+	path = pack/microsoft/java-debug
+	url = https://github.com/microsoft/java-debug.git
+[submodule "pack/eclipse/lemminx"]
+	path = pack/eclipse/lemminx
+	url = https://github.com/eclipse/lemminx.git
+[submodule "pack/sumneko/lua-language-server"]
+	path = pack/sumneko/lua-language-server
+	url = https://github.com/sumneko/lua-language-server.git
