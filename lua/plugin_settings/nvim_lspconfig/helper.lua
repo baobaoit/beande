@@ -4,12 +4,15 @@
  ╚═══════════════════════════════════╝
 --]]
 local M = {}
+local lsp_spinner = require("lsp_spinner")
 
 function M.get_extended_capabilities()
   -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
   -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+  -- turn on `window/workDoneProgress` capability
+  lsp_spinner.init_capabilities(capabilities)
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
   return capabilities
 end
@@ -17,7 +20,9 @@ end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-function M.on_attach(_, bufnr)
+function M.on_attach(client, bufnr)
+  lsp_spinner.on_attach(client, bufnr)
+
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 

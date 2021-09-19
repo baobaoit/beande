@@ -24,6 +24,10 @@ require "paq" {
 -- Improve startup time
   "lewis6991/impatient.nvim";
 -- Status bar
+  {
+    "baobaoit/lsp_spinner.nvim",
+    branch = "pre-15504"
+  };
   "hoob3rt/lualine.nvim";
 -- Auto pairs
   "windwp/nvim-autopairs";

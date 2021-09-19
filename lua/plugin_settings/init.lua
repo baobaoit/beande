@@ -13,6 +13,7 @@ utils.require_plugins {
     "diffview_nvim",
     "gitsigns_nvim",
     "lspkind_nvim",
+    "lsp_spinner_nvim",
     "lualine_nvim",
     "nvim_autopairs",
     "nvim_cmp",
