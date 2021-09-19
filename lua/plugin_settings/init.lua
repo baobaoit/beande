@@ -27,5 +27,6 @@ utils.require_plugins {
     "symbols_outline_nvim",
     "telescope_nvim",
     "toggleterm_nvim",
+    "vim_lengthmatters",
   }
 }

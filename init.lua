@@ -41,26 +41,28 @@ require "paq" {
 -- Debug
   "mfussenegger/nvim-dap";
   "rcarriga/nvim-dap-ui";
--- File explorer
-  "kyazdani42/nvim-tree.lua";
-  "kyazdani42/nvim-web-devicons";
--- Theme
-  "monsonjeremy/onedark.nvim";
--- Symbols outline
-  "simrat39/symbols-outline.nvim";
 -- Java JDT.LS
   "neovim/nvim-lspconfig";
   "mfussenegger/nvim-jdtls";
+-- File explorer
+  "kyazdani42/nvim-tree.lua";
+  "kyazdani42/nvim-web-devicons";
 -- Syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate"
   };
+-- Theme
+  "monsonjeremy/onedark.nvim";
+-- Symbols outline
+  "simrat39/symbols-outline.nvim";
 -- Telescope
   "nvim-lua/plenary.nvim";
   "nvim-telescope/telescope.nvim";
 -- Terminal
   "akinsho/toggleterm.nvim";
+-- Length over
+  "whatyouhide/vim-lengthmatters";
 }
 
 --[[
