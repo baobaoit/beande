@@ -12,6 +12,7 @@ local helper = require(plugin_settings_nvim_lspconfig_path .. ".helper")
 local on_attach_customize = helper.on_attach
 local capabilities_customize = helper.get_extended_capabilities()
 local servers = {
+  "bashls",
   "jdtls",
   "sumneko_lua",
   "vimls",
