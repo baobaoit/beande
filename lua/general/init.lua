@@ -10,7 +10,7 @@ local wo = vim.wo -- behaves like :setlocal for window-local options
 
 cmd [[filetype plugin indent on]]
 -- cmd [[set nowrap]] -- Display long lines as just one line
--- cmd [[set path+=**]]
+cmd [[set path=.,**]]
 cmd [[set t_Co=256]] -- Support 256 colors
 go["splitbelow"] = true -- Horizontal splits will automatically be below
 go["splitright"] = true -- Vertical splits will automatically be to the right
@@ -22,6 +22,7 @@ o["termguicolors"] = true -- True color support
 o["timeoutlen"] = 500 -- By default timeoutlen is 1000 ms
 o["updatetime"] = 300 -- Faster completion
 o["wildmode"] = "list:longest" -- Command-line completion mode
+wo["colorcolumn"] = "120"
 wo["number"] = true -- Line numbers
 wo["relativenumber"] = true
 
