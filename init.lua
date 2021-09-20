@@ -59,6 +59,10 @@ require "paq" {
 -- Telescope
   "nvim-lua/plenary.nvim";
   "nvim-telescope/telescope.nvim";
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make"
+  };
 -- Terminal
   "akinsho/toggleterm.nvim";
 -- Length over
