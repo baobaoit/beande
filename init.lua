@@ -63,6 +63,7 @@ require "paq" {
     "nvim-telescope/telescope-fzf-native.nvim",
     run = "make"
   };
+  "gbrlsnchs/telescope-lsp-handlers.nvim";
 -- Terminal
   "akinsho/toggleterm.nvim";
 -- Length over
