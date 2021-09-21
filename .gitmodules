@@ -13,3 +13,6 @@
 [submodule "pack/sumneko/lua-language-server"]
 	path = pack/sumneko/lua-language-server
 	url = https://github.com/sumneko/lua-language-server.git
+[submodule "pack/yaml-language-server"]
+	path = pack/yaml-language-server
+	url = https://baobaoit@github.com/redhat-developer/yaml-language-server.git
