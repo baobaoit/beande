@@ -5,6 +5,19 @@
 --]]
 local telescope = require("telescope")
 telescope.setup {
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules",
+      "target",
+      ".git",
+      ".vscode",
+      ".idea",
+      ".settings",
+      ".metadata",
+      ".mvn",
+      "out",
+    },
+  },
   extensions = {
     lsp_handlers = {
       code_action = {
