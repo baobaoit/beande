@@ -55,10 +55,20 @@ return {
     }
   },
   settings = {
-    ["java.sources.organizeImports.starThreshold"] = 9999,
-    ["java.sources.organizeImports.staticStarThreshold"] = 9999,
-    ["java.implementationsCodeLens.enabled"] = true,
-    ["java.referencesCodeLens.enabled"] = true
+    java = {
+      sources = {
+        organizeImports = {
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
+        }
+      },
+      implementationsCodeLens = {
+        enabled = true
+      },
+      referencesCodeLens = {
+        enabled = true
+      }
+    }
   },
   root_dir = root_dir,
 }
