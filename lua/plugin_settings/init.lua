@@ -11,7 +11,6 @@ utils.require_plugins {
     "ale",
     "bufferline_nvim",
     "diffview_nvim",
-    "gitsigns_nvim",
     "lspkind_nvim",
     "lsp_spinner_nvim",
     "lualine_nvim",

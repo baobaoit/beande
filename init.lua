@@ -19,7 +19,6 @@ require "paq" {
   "akinsho/bufferline.nvim";
 -- Git
   "sindrets/diffview.nvim";
-  "lewis6991/gitsigns.nvim";
   "tpope/vim-fugitive";
 -- Improve startup time
   "lewis6991/impatient.nvim";
