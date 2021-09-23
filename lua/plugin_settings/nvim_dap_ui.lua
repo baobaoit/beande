@@ -47,6 +47,6 @@ require("dapui").setup({
 
 local map = require("utils").map
 
-map("n", "<Leader>dut", ":lua require('dapui').toggle()<CR>")
-map("n", "<Leader>due", ":lua require('dapui').eval()<CR>")
-map("v", "˚", ":lua require('dapui').eval()<CR>")
+map("n", "<Leader>dt", ":lua require('dapui').toggle()<CR>")
+map("n", "<Leader>de", ":lua require('dapui').eval()<CR>")
+map("v", "<Leader>de", ":lua require('dapui').eval()<CR>")
