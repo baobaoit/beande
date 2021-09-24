@@ -3,7 +3,7 @@
  ║ Setup for JDT.LS ║
  ╚══════════════════╝
 --]]
-local java_home = os.getenv "JAVA_HOME"
+local java_home = os.getenv "JAVA11_HOME"
 local user_home = os.getenv "HOME"
 local jdtls_workspace = user_home .. "/.config/nvim/workspace/"
 local utils = require "utils"
@@ -41,9 +41,9 @@ return {
     "-jar", helper.get_jdtls_jar(),
     "-configuration", helper.get_jdtls_config(),
     "-data", jdtls_workspace .. fn.fnamemodify(fn.getcwd(), ':p:h:t'),
-    -- "--add-modules=ALL-SYSTEM",
-    -- "--add-opens", "java.base/java.util=ALL-UNNAMED",
-    -- "--add-opens", "java.base/java.lang=ALL-UNNAMED"
+    "--add-modules=ALL-SYSTEM",
+    "--add-opens", "java.base/java.util=ALL-UNNAMED",
+    "--add-opens", "java.base/java.lang=ALL-UNNAMED"
   },
   init_options = {
     jvm_args = {
