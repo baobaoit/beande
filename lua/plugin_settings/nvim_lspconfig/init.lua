@@ -13,7 +13,6 @@ local on_attach_customize = helper.on_attach
 local capabilities_customize = helper.get_extended_capabilities()
 local servers = {
   "bashls",
-  "jdtls",
   "sumneko_lua",
   "vimls",
   "yamlls",

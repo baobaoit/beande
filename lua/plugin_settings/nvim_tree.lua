@@ -6,15 +6,6 @@
 local g = vim.g
 local map = require("utils").map
 
--- 0 by default, opens the tree when typing `vim $DIR` or `vim`
-g.nvim_tree_auto_open = 1
-
--- 0 by default, this option allows the cursor to be updated when entering a buffer
-g.nvim_tree_follow = 1
-
--- 0 by default, will update the path of the current dir if the file is not inside the tree.
-g.nvim_tree_follow_update_path = 1
-
 -- 0 by default, compact folders that only contain a single folder into one node in the file tree
 g.nvim_tree_group_empty = 1
 
@@ -26,6 +17,19 @@ g.nvim_tree_indent_markers = 1
 
 -- 0 by default, closes the tree when you open a file
 g.nvim_tree_quit_on_open = 1
+
+require("nvim-tree").setup {
+  -- open the tree when running this setup function
+  open_on_setup = true,
+  -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
+  update_focused_file = {
+    -- enables the feature
+    enable = true,
+    -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
+    -- only relevant when `update_focused_file.enable` is true
+    update_cwd = true,
+  },
+}
 
 map("n", "<C-b>", ":NvimTreeToggle<CR>")
 map("n", "<Leader>n", ":NvimTreeFindFile<CR>")

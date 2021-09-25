@@ -16,3 +16,6 @@
 [submodule "pack/yaml-language-server"]
 	path = pack/yaml-language-server
 	url = https://github.com/redhat-developer/yaml-language-server.git
+[submodule "pack/fernflower"]
+	path = pack/fernflower
+	url = https://github.com/fesh0r/fernflower.git
