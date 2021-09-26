@@ -29,3 +29,9 @@ utils.require_plugins {
     "vim_lengthmatters",
   }
 }
+
+utils.augroups {
+  nvim_jdtls = {
+    "FileType java lua require('plugin_settings.nvim_jdtls').setup()"
+  }
+}
