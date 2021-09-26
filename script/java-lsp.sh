@@ -13,8 +13,10 @@ function config_os() {
 
   if [[ $os_type == darwin* ]]; then
     echo "${config_}mac"
+    return 0
   elif [[ $os_type == msys* ]]; then
     echo "${config_}win"
+    return 0
   fi
 
   echo "${config_}linux"
