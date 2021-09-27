@@ -3,7 +3,8 @@
  ║ Settings for rcarriga/nvim-dap-ui ║
  ╚═══════════════════════════════════╝
 --]]
-require("dapui").setup({
+local dapui = require "dapui"
+dapui.setup({
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
     -- Use a table to apply multiple mappings
@@ -14,7 +15,6 @@ require("dapui").setup({
     repl = "r",
   },
   sidebar = {
-    open_on_start = true,
     -- You can change the order of elements in the sidebar
     elements = {
       -- Provide as ID strings or tables with "id" and "size" keys
@@ -30,7 +30,6 @@ require("dapui").setup({
     position = "left", -- Can be "left", "right", "top", "bottom"
   },
   tray = {
-    open_on_start = true,
     elements = { "repl" },
     size = 10,
     position = "bottom", -- Can be "left", "right", "top", "bottom"
@@ -50,3 +49,9 @@ local map = require("utils").map
 map("n", "<Leader>dt", ":lua require('dapui').toggle()<CR>")
 map("n", "<Leader>de", ":lua require('dapui').eval()<CR>")
 map("v", "<Leader>de", ":lua require('dapui').eval()<CR>")
+
+-- Replicated auto-open behavior.
+local dap = require('dap')
+dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
+dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
+dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
