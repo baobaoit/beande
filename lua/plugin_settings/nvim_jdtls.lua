@@ -91,10 +91,13 @@ function M.setup()
     vim.cmd('augroup end')
   end
 
+  local lombok_ver = "1.18.20"
+
   jdtls.start_or_attach {
     cmd = {
       "java-lsp.sh",
-      workspace_dir .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+      workspace_dir .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t'),
+      lombok_ver
     },
     init_options = {
       bundles = {

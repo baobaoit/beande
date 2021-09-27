@@ -22,8 +22,16 @@ function config_os() {
   echo "${config_}linux"
 }
 
+LOMBOK_VER="${2:-1.18.20}"
+LOMBOK_DIR="$HOME/.m2/repository/org/projectlombok/lombok/${LOMBOK_VER}/lombok-${LOMBOK_VER}.jar"
+LOMBOK_EXISTS=false
+if [[ -f "$LOMBOK_DIR" ]]; then
+  LOMBOK_EXISTS=true
+fi
+
 JAR="$HOME/.config/nvim/pack/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_*.jar"
-GRADLE_HOME=$HOME/.gradle $JAVA11_HOME/bin/java \
+GRADLE_HOME=$HOME/.gradle
+sh -c '$JAVA11_HOME/bin/java \
   -Declipse.application=org.eclipse.jdt.ls.core.id1 \
   -Dosgi.bundles.defaultStartLevel=4 \
   -Declipse.product=org.eclipse.jdt.ls.core.product \
@@ -31,11 +39,11 @@ GRADLE_HOME=$HOME/.gradle $JAVA11_HOME/bin/java \
   -Dlog.level=ALL \
   -Xms1g \
   -Xmx2G \
-  ${comment# -javaagent:"$HOME/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"} \
-  ${comment# -Xbootclasspath/a:"$HOME/.m2/repository/org/projectlombok/lombok/1.18.21/lombok-1.18.20.jar"} \
-  -jar $(echo "$JAR") \
-  -configuration "$HOME/.config/nvim/pack/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/$(config_os)" \
-  -data "${1:-$HOME/.config/nvim/workspace}" \
+  '$([[ "$LOMBOK_EXISTS" == true ]] && echo "-javaagent:${LOMBOK_DIR}")' \
+  '$([[ "$LOMBOK_EXISTS" == true ]] && echo "-Xbootclasspath/a:${LOMBOK_DIR}")' \
   --add-modules=ALL-SYSTEM \
   --add-opens java.base/java.util=ALL-UNNAMED \
-  --add-opens java.base/java.lang=ALL-UNNAMED
+  --add-opens java.base/java.lang=ALL-UNNAMED \
+  -jar '$(echo "$JAR")' \
+  -configuration "$HOME/.config/nvim/pack/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/'$(config_os)'" \
+  -data "'${1:-$HOME/.config/nvim/workspace}'"'
