@@ -29,3 +29,10 @@ utils.require_plugins {
     "vim_lengthmatters",
   }
 }
+
+local nvim_lightbulb = plugin_settings_folder_name .. ".nvim_lightbulb"
+utils.augroups {
+  nvim_lightbulb = {
+    "CursorHold,CursorHoldI * lua require('" .. nvim_lightbulb .. "').setup()"
+  }
+}
