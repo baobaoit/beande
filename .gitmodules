@@ -13,6 +13,7 @@
 [submodule "pack/sumneko/lua-language-server"]
 	path = pack/sumneko/lua-language-server
 	url = https://github.com/sumneko/lua-language-server.git
+	ignore = dirty
 [submodule "pack/yaml-language-server"]
 	path = pack/yaml-language-server
 	url = https://github.com/redhat-developer/yaml-language-server.git
