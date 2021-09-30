@@ -56,17 +56,6 @@ end
 local fn = vim.fn
 local jdtls_home = os.getenv "JDTLS_HOME"
 local user_home = os.getenv "HOME"
-local sys_name = vim.loop.os_uname().sysname
-
-function M.get_jdtls_config()
-  local folder_config = "config_linux"
-  if sys_name:match "Darwin" then
-    folder_config = "config_mac"
-  elseif sys_name:match "Windows" then
-    folder_config = "config_win"
-  end
-  return jdtls_home .. "/" .. folder_config
-end
 
 function M.get_jdtls_jar()
   return fn.expand(jdtls_home .. "/plugins/org.eclipse.equinox.launcher_*.jar")

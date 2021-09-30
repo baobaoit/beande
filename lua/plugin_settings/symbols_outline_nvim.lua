@@ -55,4 +55,4 @@ vim.g.symbols_outline = {
 
 local map = require("utils").map
 
-map("n", "ll", ":SymbolsOutline<CR>")
+map("n", "<Space>ll", ":SymbolsOutline<CR>")

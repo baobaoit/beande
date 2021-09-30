@@ -11,7 +11,6 @@ utils.require_plugins {
     "ale",
     "bufferline_nvim",
     "diffview_nvim",
-    "gitsigns_nvim",
     "lspkind_nvim",
     "lsp_spinner_nvim",
     "lualine_nvim",
@@ -28,5 +27,12 @@ utils.require_plugins {
     "telescope_nvim",
     "toggleterm_nvim",
     "vim_lengthmatters",
+  }
+}
+
+local nvim_lightbulb = plugin_settings_folder_name .. ".nvim_lightbulb"
+utils.augroups {
+  nvim_lightbulb = {
+    "CursorHold,CursorHoldI * lua require('" .. nvim_lightbulb .. "').setup()"
   }
 }

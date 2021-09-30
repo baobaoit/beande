@@ -36,9 +36,15 @@ map('n', '<Space>l', 'gt') -- Tab to next buffer
 --]]
 map('n', '<C-s>', ':w<CR>', {silent = false})
 map('i', '<C-s>', '<Esc>:w<CR>', {silent = false})
-map('n', '<C-S-s>', ':wa<CR>', {silent = false})
-map('i', '<C-S-s>', '<Esc>:wa<CR>', {silent = false})
 map('n', '<C-q>', ':q<CR>', {silent = false})
 map('i', '<C-q>', '<Esc>:q<CR>', {silent = false})
-map('n', '<C-S-q>', ':qa<CR>', {silent = false})
-map('i', '<C-S-q>', '<Esc>:qa<CR>', {silent = false})
+
+--[[
+ ╔════════════════════════╗
+ ║ Switch Neovim's window ║
+ ╚════════════════════════╝
+--]]
+map('n', '<M-j>', '<C-w>j')
+map('n', '<M-k>', '<C-w>k')
+map('n', '<M-h>', '<C-w>h')
+map('n', '<M-l>', '<C-w>l')

@@ -4,7 +4,7 @@
  ╚══════════════════════════════════════╝
 --]]
 require("toggleterm").setup {
-  direction = 'tab', -- 'vertical' | 'horizontal' | 'tab' | 'float',
+  direction = 'horizontal', -- 'vertical' | 'horizontal' | 'tab' | 'float',
   float_opts = {
     -- The border key is *almost* the same as 'nvim_open_win'
     -- see :h nvim_open_win for details on borders however

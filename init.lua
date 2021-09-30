@@ -19,15 +19,11 @@ require "paq" {
   "akinsho/bufferline.nvim";
 -- Git
   "sindrets/diffview.nvim";
-  "lewis6991/gitsigns.nvim";
   "tpope/vim-fugitive";
 -- Improve startup time
   "lewis6991/impatient.nvim";
 -- Status bar
-  {
-    "baobaoit/lsp_spinner.nvim",
-    branch = "pre-15504"
-  };
+  "doums/lsp_spinner.nvim";
   "hoob3rt/lualine.nvim";
 -- Auto pairs
   "windwp/nvim-autopairs";
@@ -38,6 +34,8 @@ require "paq" {
   "hrsh7th/cmp-nvim-lsp";
   "onsails/lspkind-nvim";
   "hrsh7th/nvim-cmp";
+-- Lightbulb
+  "kosayoda/nvim-lightbulb";
 -- Debug
   "mfussenegger/nvim-dap";
   "rcarriga/nvim-dap-ui";
@@ -59,6 +57,11 @@ require "paq" {
 -- Telescope
   "nvim-lua/plenary.nvim";
   "nvim-telescope/telescope.nvim";
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make"
+  };
+  "gbrlsnchs/telescope-lsp-handlers.nvim";
 -- Terminal
   "akinsho/toggleterm.nvim";
 -- Length over

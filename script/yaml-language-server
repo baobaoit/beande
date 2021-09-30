@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec node "$HOME/.config/nvim/yaml-language-server/server.js" "$@"
