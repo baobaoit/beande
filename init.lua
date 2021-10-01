@@ -42,8 +42,6 @@ require "paq" {
   "hrsh7th/cmp-nvim-lsp";
   "onsails/lspkind-nvim";
   "hrsh7th/nvim-cmp";
--- Lightbulb
-  "kosayoda/nvim-lightbulb";
 -- Debug
   "mfussenegger/nvim-dap";
   "rcarriga/nvim-dap-ui";
