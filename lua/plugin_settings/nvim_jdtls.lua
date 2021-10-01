@@ -45,7 +45,9 @@ end
 function M.setup()
   ui_extension()
 
-  local workspace_dir = os.getenv("HOME") .. "/.config/nvim/workspace/"
+  local home = os.getenv("HOME")
+  local java_settings_url = home .. "/.config/nvim/rule/settings.prefs"
+  local workspace_dir = home .. "/.config/nvim/workspace/"
   local helper_path = require("utils").get_plugin_settings_folder_name() .. "."
     .. require("utils").get_nvim_lspconfig_folder_name() .. ".helper"
   local helper = require(helper_path)
@@ -75,20 +77,6 @@ function M.setup()
         api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
       end
     end
-
-    vim.cmd('augroup lsp_aucmds')
-    vim.cmd(string.format('au! * <buffer=%d>', bufnr))
-    if client.resolved_capabilities['document_highlight'] then
-      vim.cmd(string.format('au CursorHold  <buffer=%d> lua vim.lsp.buf.document_highlight()', bufnr))
-      vim.cmd(string.format('au CursorHoldI <buffer=%d> lua vim.lsp.buf.document_highlight()', bufnr))
-      vim.cmd(string.format('au CursorMoved <buffer=%d> lua vim.lsp.buf.clear_references()', bufnr))
-    end
-    if vim.lsp.codelens and client.resolved_capabilities['code_lens'] then
-      -- vim.cmd(string.format('au BufEnter,BufModifiedSet,InsertLeave <buffer=%d> lua vim.lsp.codelens.refresh()', bufnr))
-      api.nvim_buf_set_keymap(bufnr, "n", "<leader>cr", "<Cmd>lua vim.lsp.codelens.refresh()<CR>", opts)
-      api.nvim_buf_set_keymap(bufnr, "n", "<leader>ce", "<Cmd>lua vim.lsp.codelens.run()<CR>", opts)
-    end
-    vim.cmd('augroup end')
   end
 
   local lombok_ver = "1.18.20"
@@ -105,27 +93,38 @@ function M.setup()
       }
     },
     settings = {
+      ["java.settings.url"] = java_settings_url,
       java = {
-        signatureHelp = { enabled = true },
+        codeGeneration = {
+          hashCodeEquals = {
+            useInstanceof = true,
+            useJava7Objects = true
+          },
+          toString = {
+            codeStyle = "STRING_BUILDER_CHAINED"
+          },
+          useBlocks = true,
+        },
         contentProvider = { preferred = 'fernflower' },
+        implementationsCodeLens = {
+          enabled = true
+        },
+        referencesCodeLens = {
+          enabled = true
+        },
+        signatureHelp = { enabled = true },
         sources = {
           organizeImports = {
             starThreshold = 9999,
             staticStarThreshold = 9999,
           }
         },
-        implementationsCodeLens = {
-          enabled = true
-        },
-        referencesCodeLens = {
-          enabled = true
-        }
       }
     },
     capabilities = helper.get_extended_capabilities(),
     flags = {
-      debounce_text_changes = 150,
       allow_incremental_sync = true,
+      debounce_text_changes = 150,
       server_side_fuzzy_completion = true
     },
     on_attach = on_attach,
