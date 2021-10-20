@@ -1,4 +1,12 @@
 --[[
+  ____              _                 _ _
+ | __ )  __ _  ___ | |__   __ _  ___ (_) |_
+ |  _ \ / _` |/ _ \| '_ \ / _` |/ _ \| | __|
+ | |_) | (_| | (_) | |_) | (_| | (_) | | |
+ |____/ \__,_|\___/|_.__/ \__,_|\___/|_|\__|
+--]]
+
+--[[
  ╔═══════════╗
  ║ Bootstrap ║
  ╚═══════════╝
@@ -34,8 +42,6 @@ require "paq" {
   "hrsh7th/cmp-nvim-lsp";
   "onsails/lspkind-nvim";
   "hrsh7th/nvim-cmp";
--- Lightbulb
-  "kosayoda/nvim-lightbulb";
 -- Debug
   "mfussenegger/nvim-dap";
   "rcarriga/nvim-dap-ui";
