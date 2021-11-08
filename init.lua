@@ -32,7 +32,7 @@ require "paq" {
   "lewis6991/impatient.nvim";
 -- Status bar
   "doums/lsp_spinner.nvim";
-  "hoob3rt/lualine.nvim";
+  "nvim-lualine/lualine.nvim";
 -- Auto pairs
   "windwp/nvim-autopairs";
 -- Completion
