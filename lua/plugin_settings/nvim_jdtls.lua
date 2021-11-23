@@ -12,6 +12,7 @@ local function ui_extension()
   local sorters = require "telescope.sorters"
   local actions = require "telescope.actions"
   local pickers = require "telescope.pickers"
+  local action_state = require "telescope.actions.state"
 
   require("jdtls.ui").pick_one_async = function(items, prompt, label_fn, cb)
     local opts = {}
@@ -25,19 +26,20 @@ local function ui_extension()
             display = label_fn(entry),
             ordinal = label_fn(entry),
           }
-        end
+        end,
       },
       sorter = sorters.get_generic_fuzzy_sorter(),
       attach_mappings = function(prompt_bufnr)
         actions.select_default:replace(function()
-          local selection = actions.get_selected_entry(prompt_bufnr)
+          local selection = action_state.get_selected_entry(prompt_bufnr)
+
           actions.close(prompt_bufnr)
 
           cb(selection.value)
         end)
 
         return true
-      end
+      end,
     }):find()
   end
 end
@@ -84,7 +86,7 @@ function M.setup()
   jdtls.start_or_attach {
     cmd = {
       "java-lsp.sh",
-      workspace_dir .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t'),
+      workspace_dir .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
       lombok_ver
     },
     init_options = {
@@ -105,7 +107,7 @@ function M.setup()
           },
           useBlocks = true,
         },
-        contentProvider = { preferred = 'fernflower' },
+        contentProvider = { preferred = "fernflower" },
         implementationsCodeLens = {
           enabled = true
         },
