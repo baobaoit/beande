@@ -25,6 +25,8 @@ require "paq" {
   "dense-analysis/ale";
 -- Buffer line
   "akinsho/bufferline.nvim";
+-- Comment
+  "numToStr/Comment.nvim";
 -- Git
   "sindrets/diffview.nvim";
   "tpope/vim-fugitive";
