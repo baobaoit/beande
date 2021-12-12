@@ -10,6 +10,7 @@ utils.require_plugins {
     "impatient_nvim",
     "ale",
     "bufferline_nvim",
+    "Comment_nvim",
     "diffview_nvim",
     "lspkind_nvim",
     "lsp_spinner_nvim",
