@@ -139,9 +139,7 @@ function M.setup()
 
   local map = require("utils").map
 
-  map("n", "<A-CR>", "<Cmd>lua require('jdtls').code_action()<CR>")
-  map("v", "<A-CR>", "<Esc><Cmd>lua require('jdtls').code_action(true)<CR>")
-  map("n", "<Leader>r", "<Cmd>lua require('jdtls').code_action(false, 'refactor')<CR>")
+  map("v", "<A-CR>", "<Esc><Cmd>lua vim.lsp.buf.range_code_action()<CR>")
 
   map("n", "<A-o>", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
   map("n", "crv", "<Cmd>lua require('jdtls').extract_variable()<CR>")
