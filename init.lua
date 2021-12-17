@@ -69,6 +69,7 @@ require "paq" {
     "nvim-telescope/telescope-fzf-native.nvim",
     run = "make"
   };
+  "nvim-telescope/telescope-ui-select.nvim";
   "gbrlsnchs/telescope-lsp-handlers.nvim";
 -- Terminal
   "akinsho/toggleterm.nvim";

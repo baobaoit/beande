@@ -4,21 +4,25 @@
  ╚════════════════════════════════════════════╝
 --]]
 local telescope = require("telescope")
+local telescopeThemes = require("telescope.themes")
 telescope.setup {
   extensions = {
     lsp_handlers = {
       code_action = {
-        telescope = require('telescope.themes').get_dropdown({}),
+        telescope = telescopeThemes.get_dropdown({}),
       }
+    },
+    ["ui-select"] = {
+      telescopeThemes.get_dropdown({})
     }
   }
 }
 
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-telescope.load_extension('fzf')
-telescope.load_extension('lsp_handlers')
-
+telescope.load_extension("fzf")
+telescope.load_extension("lsp_handlers")
+telescope.load_extension("ui-select")
 
 local map = require("utils").map
 
