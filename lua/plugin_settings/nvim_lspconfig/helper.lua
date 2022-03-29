@@ -65,14 +65,4 @@ function M.get_java_debug_jar()
   return fn.expand(user_home .. "/.config/nvim/java-debug/com.microsoft.java.debug.plugin-*.jar")
 end
 
-function M.get_lua_language_server_env()
-  local system_name = "Linux"
-  if fn.has("mac") == 1 then
-    system_name = "macOS"
-  elseif fn.has("win32") == 1 then
-    system_name = "Windows"
-  end
-  return system_name
-end
-
 return M
