@@ -12,9 +12,6 @@ g.nvim_tree_group_empty = 1
 -- 0 by default, this option shows indent markers when folders are open
 g.nvim_tree_indent_markers = 1
 
--- 0 by default, closes the tree when you open a file
-g.nvim_tree_quit_on_open = 1
-
 require("nvim-tree").setup {
   -- open the tree when running this setup function
   open_on_setup = true,
@@ -27,6 +24,12 @@ require("nvim-tree").setup {
     -- 0 by default, this option hides files and folders starting with a dot `.`
     dotfiles = true,
   },
+  actions = {
+    open_file = {
+      -- 0 by default, closes the tree when you open a file
+      quit_on_open = true
+    }
+  }
 }
 
 map("n", "<C-b>", ":NvimTreeToggle<CR>")
