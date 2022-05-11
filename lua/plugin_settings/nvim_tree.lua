@@ -9,9 +9,6 @@ local map = require("utils").map
 -- 0 by default, compact folders that only contain a single folder into one node in the file tree
 g.nvim_tree_group_empty = 1
 
--- 0 by default, this option shows indent markers when folders are open
-g.nvim_tree_indent_markers = 1
-
 require("nvim-tree").setup {
   -- open the tree when running this setup function
   open_on_setup = true,
@@ -28,6 +25,12 @@ require("nvim-tree").setup {
     open_file = {
       -- 0 by default, closes the tree when you open a file
       quit_on_open = true
+    }
+  },
+  renderer = {
+    indent_markers = {
+      -- 0 by default, this option shows indent markers when folders are open
+      enable = true
     }
   }
 }
