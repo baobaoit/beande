@@ -81,7 +81,7 @@ function M.setup()
     end
   end
 
-  local lombok_ver = "1.18.20"
+  local lombok_ver = "1.18.24"
 
   jdtls.start_or_attach {
     cmd = {
