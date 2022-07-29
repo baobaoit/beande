@@ -31,7 +31,7 @@ fi
 
 JAR="$HOME/.config/nvim/pack/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_*.jar"
 GRADLE_HOME=$HOME/.gradle
-sh -c '$JAVA11_HOME/bin/java \
+sh -c '$JAVA17_HOME/bin/java \
   -Declipse.application=org.eclipse.jdt.ls.core.id1 \
   -Dosgi.bundles.defaultStartLevel=4 \
   -Declipse.product=org.eclipse.jdt.ls.core.product \
