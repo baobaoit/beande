@@ -3,11 +3,7 @@
  ║ Settings for kyazdani42/nvim-tree.lua ║
  ╚═══════════════════════════════════════╝
 --]]
-local g = vim.g
 local map = require("utils").map
-
--- 0 by default, compact folders that only contain a single folder into one node in the file tree
-g.nvim_tree_group_empty = 1
 
 require("nvim-tree").setup {
   -- open the tree when running this setup function
@@ -31,7 +27,9 @@ require("nvim-tree").setup {
     indent_markers = {
       -- 0 by default, this option shows indent markers when folders are open
       enable = true
-    }
+    },
+    -- 0 by default, compact folders that only contain a single folder into one node in the file tree
+    group_empty = true
   }
 }
 
