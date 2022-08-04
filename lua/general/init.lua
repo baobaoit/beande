@@ -1,48 +1,35 @@
---[[
- ╔═════════════════════════════╗
- ║ General settings for Neovim ║
- ╚═════════════════════════════╝
---]]
+local api = vim.api
+local autocmd = api.nvim_create_autocmd
+local augroup = api.nvim_create_augroup
 local cmd = vim.cmd
-local go = vim.go -- behaves like :setglobal
-local o = vim.o -- behaves like :set
-local wo = vim.wo -- behaves like :setlocal for window-local options
+local g = api.nvim_set_var
+local map = vim.keymap.set
+local o = api.nvim_set_option
+local opt = api.nvim_buf_set_option
+local wo = api.nvim_win_set_option
 
 cmd [[filetype plugin indent on]]
--- cmd [[set nowrap]] -- Display long lines as just one line
-cmd [[set path=.,**]]
-cmd [[set t_Co=256]] -- Support 256 colors
-go["splitbelow"] = true -- Horizontal splits will automatically be below
-go["splitright"] = true -- Vertical splits will automatically be to the right
-go["completeopt"] = "menuone,noselect" -- Set completeopt to have a better completion experience
-o["hidden"] = true -- Required to keep multiple buffers open multiple buffers
-o["mouse"] = "a" -- Enable your mouse
-o["shell"] = "/bin/zsh"
-o["termguicolors"] = true -- True color support
-o["timeoutlen"] = 500 -- By default timeoutlen is 1000 ms
-o["updatetime"] = 300 -- Faster completion
-o["wildmode"] = "list:longest" -- Command-line completion mode
-wo["colorcolumn"] = "120"
-wo["number"] = true -- Line numbers
-wo["relativenumber"] = true
+g('mapleader', ' ')
+o('completeopt', 'menu,menuone,noselect')
+o('hidden', true)
+o('mouse', 'a')
+o('shell', '/bin/zsh')
+o('t_Co', '256')
+o('tgc', true)
+o('timeoutlen', 500) -- By default timeoutlen is 1000 ms
+wo(0, 'nu', true)
+wo(0, 'rnu', true)
 
---[[
- ╔════════════════════════╗
- ║ Key mapping for Neovim ║
- ╚════════════════════════╝
---]]
-require "general.mapping"
+-- Escape the Terminal mode
+map('t', '<Esc>', '<C-\\><C-n>', { noremap=true, silent=true })
 
---[[
- ╔═════════════════════╗
- ║ Augroups for Neovim ║
- ╚═════════════════════╝
---]]
-require("utils").augroups {
-  DisableAutomaticCommentInNewLine = {
-    "FileType * setlocal formatoptions-=cro"
-  },
-  SetTab = {
-    "FileType * setlocal expandtab shiftwidth=2 tabstop=2 smartindent"
-  }
-}
+autocmd({'FileType'}, {
+    group = augroup('SetTab', {}),
+    pattern = '*',
+    callback = function()
+      opt(0, 'et', true)
+      opt(0, 'shiftwidth', 2)
+      opt(0, 'ts', 2)
+      opt(0, 'si', true)
+    end
+})

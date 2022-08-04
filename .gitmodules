@@ -1,18 +1,6 @@
-[submodule "pack/eclipse.jdt.ls"]
-	path = pack/eclipse.jdt.ls
-	url = https://github.com/eclipse/eclipse.jdt.ls.git
-[submodule "pack/google-java-format"]
-	path = pack/google-java-format
-	url = https://github.com/google/google-java-format.git
-[submodule "pack/microsoft/java-debug"]
-	path = pack/microsoft/java-debug
-	url = https://github.com/microsoft/java-debug.git
-[submodule "pack/eclipse/lemminx"]
-	path = pack/eclipse/lemminx
-	url = https://github.com/eclipse/lemminx.git
-[submodule "pack/yaml-language-server"]
-	path = pack/yaml-language-server
-	url = https://github.com/redhat-developer/yaml-language-server.git
+[submodule "pack/java-debug"]
+	path = pack/java-debug
+	url = https://github.com/microsoft/java-debug
 [submodule "pack/fernflower"]
 	path = pack/fernflower
-	url = https://github.com/fesh0r/fernflower.git
+	url = https://github.com/fesh0r/fernflower
