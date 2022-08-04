@@ -5,88 +5,114 @@
  | |_) | (_| | (_) | |_) | (_| | (_) | | |
  |____/ \__,_|\___/|_.__/ \__,_|\___/|_|\__|
 --]]
+local packer_bootstrap = require('bootstrap').packer_bootstrap
 
---[[
- ╔═══════════╗
- ║ Bootstrap ║
- ╚═══════════╝
---]]
-require "bootstrap"
+require('packer').startup(function(use)
+  -- Make sure to add this line to let packer manage itself
+  use 'wbthomason/packer.nvim'
 
---[[
- ╔═════════╗
- ║ Plugins ║
- ╚═════════╝
---]]
-require "paq" {
--- Package manager
-  "savq/paq-nvim"; -- Let Paq manage itself
--- Code analyze
-  "dense-analysis/ale";
--- Buffer line
-  "akinsho/bufferline.nvim";
--- Comment
-  "numToStr/Comment.nvim";
--- Git
-  "sindrets/diffview.nvim";
-  "tpope/vim-fugitive";
--- Improve startup time
-  "lewis6991/impatient.nvim";
--- Status bar
-  "doums/lsp_spinner.nvim";
-  "nvim-lualine/lualine.nvim";
--- Auto pairs
-  "windwp/nvim-autopairs";
--- Completion
-  "L3MON4D3/LuaSnip";
-  "hrsh7th/cmp-buffer";
-  "saadparwaiz1/cmp_luasnip";
-  "hrsh7th/cmp-nvim-lsp";
-  "onsails/lspkind-nvim";
-  "hrsh7th/nvim-cmp";
--- Debug
-  "mfussenegger/nvim-dap";
-  "rcarriga/nvim-dap-ui";
--- Java JDT.LS
-  "neovim/nvim-lspconfig";
-  "mfussenegger/nvim-jdtls";
--- File explorer
-  "kyazdani42/nvim-tree.lua";
-  "kyazdani42/nvim-web-devicons";
--- Syntax highlighting
-  {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate"
-  };
--- Theme
-  "monsonjeremy/onedark.nvim";
--- Symbols outline
-  "simrat39/symbols-outline.nvim";
--- Telescope
-  "nvim-lua/plenary.nvim";
-  "nvim-telescope/telescope.nvim";
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    run = "make"
-  };
-  "nvim-telescope/telescope-ui-select.nvim";
-  "gbrlsnchs/telescope-lsp-handlers.nvim";
--- Terminal
-  "akinsho/toggleterm.nvim";
--- Length over
-  "whatyouhide/vim-lengthmatters";
-}
+  -- Auto pairs
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup {}
+    end
+  }
 
---[[
- ╔═════════════════════════════╗
- ║ General settings for Neovim ║
- ╚═════════════════════════════╝
---]]
-require "general"
+  -- Buffer line
+  use {
+    'akinsho/bufferline.nvim',
+    tag = 'v2.*'
+  }
 
---[[
- ╔════════════════════════════╗
- ║ Plugin settings for Neovim ║
- ╚════════════════════════════╝
---]]
-require "plugin_settings"
+  -- Comment
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
+
+  -- Completion
+  use {
+    'L3MON4D3/LuaSnip', -- Snippets plugin
+    'hrsh7th/cmp-nvim-lua', -- Neovim Lua API source for nvim-cmp
+    'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
+    'hrsh7th/nvim-cmp', -- Autocompletion plugin
+    'onsails/lspkind-nvim',
+    'rcarriga/cmp-dap', -- Source for nvim-dap REPL and nvim-dap-ui buffers
+    'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+  }
+
+  -- File explorer
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    }
+  }
+
+  -- Indent
+  use 'lukas-reineke/indent-blankline.nvim'
+
+  -- Java JDT.LS
+  use 'mfussenegger/nvim-dap'
+  use 'mfussenegger/nvim-jdtls'
+  use { 'rcarriga/nvim-dap-ui' }
+
+  -- LSP
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/mason-lspconfig.nvim',
+    'williamboman/mason.nvim',
+  }
+
+  -- Status bar
+  use 'j-hui/fidget.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  -- Syntax highlighting
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      require('nvim-treesitter.install').update({ with_sync = true })
+    end
+  }
+
+  -- Telescope
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+  -- or                            , branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use { 'nvim-telescope/telescope-ui-select.nvim' }
+
+  -- Terminal
+  use {
+    'akinsho/toggleterm.nvim',
+    tag = 'v2.*',
+    config = function()
+      require('toggleterm').setup {
+        open_mapping = [[<C-\>]]
+      }
+    end
+  }
+
+  -- Theme
+  use 'navarasu/onedark.nvim'
+
+  -- Which key
+  use 'folke/which-key.nvim'
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
+
+require('plugins')
+
+require('general')
