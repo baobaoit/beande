@@ -60,6 +60,9 @@ require('packer').startup(function(use)
   use 'mfussenegger/nvim-jdtls'
   use { 'rcarriga/nvim-dap-ui' }
 
+  -- Linter
+  use 'mfussenegger/nvim-lint'
+
   -- LSP
   use {
     'neovim/nvim-lspconfig',

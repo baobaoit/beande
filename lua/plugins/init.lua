@@ -13,7 +13,8 @@ local plugins = {
     'nvim-dap',
     'telescope',
     'nvim-dap-ui',
-    'nvim-treesitter'
+    'nvim-treesitter',
+    'nvim-lint'
   }
 }
 
