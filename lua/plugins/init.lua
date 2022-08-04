@@ -3,7 +3,7 @@ local plugins = {
     'nvim-tree',
     'onedark',
     'lualine',
-    'mason',
+    'mason-eco',
     'lsp',
     'nvim-cmp',
     'which-key',
