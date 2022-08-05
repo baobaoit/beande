@@ -97,12 +97,7 @@ require('packer').startup(function(use)
   -- Terminal
   use {
     'akinsho/toggleterm.nvim',
-    tag = 'v2.*',
-    config = function()
-      require('toggleterm').setup {
-        open_mapping = [[<C-\>]]
-      }
-    end
+    tag = 'v2.*'
   }
 
   -- Theme

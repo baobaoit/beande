@@ -14,7 +14,8 @@ local plugins = {
     'telescope',
     'nvim-dap-ui',
     'nvim-treesitter',
-    'nvim-lint'
+    'nvim-lint',
+    'toggleterm'
   }
 }
 
