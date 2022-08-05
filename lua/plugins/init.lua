@@ -3,7 +3,7 @@ local plugins = {
     'nvim-tree',
     'onedark',
     'lualine',
-    'mason',
+    'mason-eco',
     'lsp',
     'nvim-cmp',
     'which-key',
@@ -13,7 +13,9 @@ local plugins = {
     'nvim-dap',
     'telescope',
     'nvim-dap-ui',
-    'nvim-treesitter'
+    'nvim-treesitter',
+    'nvim-lint',
+    'toggleterm'
   }
 }
 

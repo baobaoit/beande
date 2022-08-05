@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
   local plugins = {
-    ['plugins.mason'] = {
+    ['plugins.mason-eco'] = {
       'mason',
       'mason-lspconfig'
     }

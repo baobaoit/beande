@@ -74,6 +74,18 @@ function M.setup()
           ':lua require("dapui").eval()<CR>',
           'DAP UI eval'
         }
+      },
+      yy = {
+        '"+y<cr>',
+        'Copy to clipboard'
+      },
+      p = {
+        '"+p<cr>',
+        'Paste from clipboard'
+      },
+      ntt = {
+        ':NvimTreeToggle<cr>',
+        'Nvim Tree toggle'
       }
     },
     ['[d'] = 'Diagnostic go to prev',
@@ -117,10 +129,27 @@ function M.setup()
       de = {
         ':lua require("dapui").eval()<CR>',
         'DAP UI eval'
+      },
+      yy = {
+        '"+y',
+        'Copy to clipboard'
+      },
+      p = {
+        '"+p',
+        'Paste from clipboard'
       }
     }
   }, {
     mode = 'v'
+  })
+
+  wk.register({
+    jk = {
+      '<Esc>',
+      'Escape the insert mode'
+    }
+  }, {
+    mode = 'i'
   })
 end
 

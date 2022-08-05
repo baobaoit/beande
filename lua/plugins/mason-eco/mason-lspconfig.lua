@@ -8,6 +8,9 @@ function M.setup()
       'bashls',
       'lemminx',
       'yamlls',
+      'luachecks',
+      'shellcheck',
+      'yamllint'
     }
   }
 end

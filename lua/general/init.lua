@@ -20,8 +20,9 @@ o('timeoutlen', 500) -- By default timeoutlen is 1000 ms
 wo(0, 'nu', true)
 wo(0, 'rnu', true)
 
+local map_opts = { noremap = true, silent = true }
 -- Escape the Terminal mode
-map('t', '<Esc>', '<C-\\><C-n>', { noremap=true, silent=true })
+map('t', '<Esc>', '<C-\\><C-n>', map_opts)
 
 autocmd({'FileType'}, {
     group = augroup('SetTab', {}),
