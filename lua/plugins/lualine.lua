@@ -1,22 +1,19 @@
 local M = {}
 
 function M.setup()
+  local navic = require('nvim-navic')
   require('lualine').setup {
     options = {
       theme = 'onedark',
-      disabled_filetypes = {
-        'java'
-      }
+      -- disabled_filetypes = {
+      --   'java'
+      -- }
     },
     sections = {
       lualine_a = {'mode'},
       lualine_b = {'branch','diff'},
       lualine_c = {
-        {
-          'filename',
-          -- 0 = just filename, 1 = relative path, 2 = absolute path
-          path = 1
-        }
+        { navic.get_location, cond = navic.is_available }
       },
       lualine_x = {'encoding', 'fileformat', 'filetype'},
       lualine_y = {'progress'},

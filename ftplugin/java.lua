@@ -148,7 +148,7 @@ local config = {
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require('jdtls').start_or_attach(config)
-require('wlsample.airline')
+-- require('wlsample.airline')
 
 local wk = require('which-key')
 wk.register({

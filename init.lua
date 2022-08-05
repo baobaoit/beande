@@ -22,7 +22,8 @@ require('packer').startup(function(use)
   -- Buffer line
   use {
     'akinsho/bufferline.nvim',
-    tag = 'v2.*'
+    tag = 'v2.*',
+    requires = 'kyazdani42/nvim-web-devicons'
   }
 
   -- Comment
@@ -58,7 +59,10 @@ require('packer').startup(function(use)
   -- Java JDT.LS
   use 'mfussenegger/nvim-dap'
   use 'mfussenegger/nvim-jdtls'
-  use { 'rcarriga/nvim-dap-ui' }
+  use {
+    'rcarriga/nvim-dap-ui',
+    requires = 'mfussenegger/nvim-dap'
+  }
 
   -- Linter
   use 'mfussenegger/nvim-lint'
@@ -76,7 +80,7 @@ require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  use 'windwp/windline.nvim'
+  -- use 'windwp/windline.nvim'
 
   -- Syntax highlighting
   use {
@@ -105,6 +109,12 @@ require('packer').startup(function(use)
 
   -- Which key
   use 'folke/which-key.nvim'
+
+  -- Winbar
+  use {
+    'SmiteshP/nvim-navic',
+    requires = 'neovim/nvim-lspconfig'
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
