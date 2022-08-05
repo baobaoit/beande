@@ -2,7 +2,7 @@ local M = {}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-function M.on_attach(client, bufnr)
+function M.on_attach(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -65,9 +65,9 @@ function M.setup()
   for folder_name, lsp_list in pairs(servers) do
     for _, lsp in ipairs(lsp_list) do
       local lsp_settings = require(folder_name..'.'..lsp)
-      lsp_settings.on_attach = on_attach
+      lsp_settings.on_attach = M.on_attach
       lsp_settings.flags = lsp_flags
-      lsp_settings.capabilities = M:get_capabilities()
+      lsp_settings.capabilities = M.get_capabilities()
       lspconfig[lsp].setup(lsp_settings)
     end
   end
