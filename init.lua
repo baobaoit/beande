@@ -63,6 +63,7 @@ require('packer').startup(function(use)
     'rcarriga/nvim-dap-ui',
     requires = 'mfussenegger/nvim-dap'
   }
+  use 'theHamsta/nvim-dap-virtual-text'
 
   -- Linter
   use 'mfussenegger/nvim-lint'

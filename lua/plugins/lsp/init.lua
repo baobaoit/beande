@@ -33,6 +33,45 @@ function M.get_capabilities()
   return capabilities
 end
 
+function M.navic_attach_and_setup(client, bufnr)
+  local navic = require('nvim-navic')
+  navic.attach(client, bufnr)
+  navic.setup {
+    icons = {
+        File          = " ",
+        Module        = " ",
+        Namespace     = " ",
+        Package       = " ",
+        Class         = " ",
+        Method        = " ",
+        Property      = " ",
+        Field         = " ",
+        Constructor   = " ",
+        Enum          = "練",
+        Interface     = "練",
+        Function      = " ",
+        Variable      = " ",
+        Constant      = " ",
+        String        = " ",
+        Number        = " ",
+        Boolean       = "◩ ",
+        Array         = " ",
+        Object        = " ",
+        Key           = " ",
+        Null          = "ﳠ ",
+        EnumMember    = " ",
+        Struct        = " ",
+        Event         = " ",
+        Operator      = " ",
+        TypeParameter = " ",
+    },
+    highlight = false,
+    separator = " > ",
+    depth_limit = 0,
+    depth_limit_indicator = "..",
+  }
+end
+
 function M.setup()
   local servers = {
     ['plugins.lsp'] = {
@@ -70,42 +109,7 @@ function M.setup()
       else
         lsp_settings.on_attach = function(client, bufnr)
           M.on_attach(client, bufnr)
-          local navic = require('nvim-navic')
-          navic.attach(client, bufnr)
-          navic.setup {
-            icons = {
-                File          = " ",
-                Module        = " ",
-                Namespace     = " ",
-                Package       = " ",
-                Class         = " ",
-                Method        = " ",
-                Property      = " ",
-                Field         = " ",
-                Constructor   = " ",
-                Enum          = "練",
-                Interface     = "練",
-                Function      = " ",
-                Variable      = " ",
-                Constant      = " ",
-                String        = " ",
-                Number        = " ",
-                Boolean       = "◩ ",
-                Array         = " ",
-                Object        = " ",
-                Key           = " ",
-                Null          = "ﳠ ",
-                EnumMember    = " ",
-                Struct        = " ",
-                Event         = " ",
-                Operator      = " ",
-                TypeParameter = " ",
-            },
-            highlight = false,
-            separator = " > ",
-            depth_limit = 0,
-            depth_limit_indicator = "..",
-          }
+          M.navic_attach_and_setup(client, bufnr)
         end
       end
       lsp_settings.flags = lsp_flags
