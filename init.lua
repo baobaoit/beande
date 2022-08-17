@@ -83,6 +83,9 @@ require('packer').startup(function(use)
   }
   -- use 'windwp/windline.nvim'
 
+  -- Startup
+  use 'lewis6991/impatient.nvim'
+
   -- Syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',

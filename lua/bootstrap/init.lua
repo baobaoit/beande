@@ -1,5 +1,10 @@
 local M = {}
 
+local impatient_ok, _ = pcall(require, 'impatient')
+if not impatient_ok then
+  print('The plugin [impatient] not found. Please run :PackerSync!')
+end
+
 local cmd = vim.cmd
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -15,6 +20,7 @@ end
 local home = os.getenv('HOME')
 local nvim_bin_dir = home .. '/.config/nvim/bin'
 local platform = require('mason-core.platform')
+---@diagnostic disable-next-line: 122
 vim.env.PATH = nvim_bin_dir .. platform.path_sep .. vim.env.PATH
 
 return M
