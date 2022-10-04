@@ -12,14 +12,12 @@ local java_format_style_rule = rule_dir..'eclipse-java-google-style.xml'
 local java_debug_jar = nvim_dir..'/java-debug/*.jar'
 local workspace_root_dir = nvim_dir..'/workspace/'
 local workspace_dir = workspace_root_dir..project_name
-local LOMBOK_VERSION = '1.18.24'
-local lombok_jar = string.format(
-  '%s/.m2/repository/org/projectlombok/lombok/%s/lombok-%s.jar',
-  home_dir, LOMBOK_VERSION, LOMBOK_VERSION)
+local lombok_jar = vim.fn.expand(home_dir..'/.m2/repository/org/projectlombok/lombok/*/*.jar')
 local lsp = require('plugins.lsp')
 
 local on_attach = function(client, bufnr)
   lsp.on_attach(client, bufnr)
+  lsp.navic_attach_and_setup(client, bufnr)
 
   -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
   -- you make during a debug session immediately.

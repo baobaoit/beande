@@ -62,18 +62,36 @@ function M.setup()
         'Set log point message'
       },
       d = {
-        dc = {
-          ':lua require("dap").disconnect()<CR> :lua require("dap").close()<CR>',
-          'Debug disconnect and close'
-        },
-        t = {
-          ':lua require("dapui").toggle()<CR>',
-          'DAP UI toggle'
-        },
         e = {
           ':lua require("dapui").eval()<CR>',
           'DAP UI eval'
+        },
+        c = {
+          ':lua require("dap").continue()<CR>',
+          'Debug continue'
+        },
+        s = {
+          o = {
+            ':lua require("dap").step_over()<CR>',
+            'Step over'
+          },
+          O = {
+            ':lua require("dap").step_out()<CR>',
+            'Step out'
+          },
+          i = {
+            ':lua require("dap").step_into()<CR>',
+            'Step into'
+          }
+        },
+        t = {
+          ':lua require("dap").terminate()<CR> :lua require("dapui").close()<CR>',
+          'Terminates the debug session'
         }
+      },
+      cb = {
+        ':lua require("dap").clear_breakpoints()<CR>',
+        'Clear breakpoints'
       },
       yy = {
         '"+y<cr>',
@@ -106,22 +124,6 @@ function M.setup()
       ':BufferLineCyclePrev<CR>',
       'Buffer prev'
     },
-    ['<F5>'] = {
-      ':lua require("dap").continue()<CR>',
-      'Debug continue'
-    },
-    ['<F8>'] = {
-      ':lua require("dap").step_over()<CR>',
-      'Step over'
-    },
-    ['<F9>'] = {
-      ':lua require("dap").step_into()<CR>',
-      'Step into'
-    },
-    ['<F10>'] = {
-      ':lua require("dap").step_out()<CR>',
-      'Step out'
-    }
   })
 
   wk.register({

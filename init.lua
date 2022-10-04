@@ -63,6 +63,7 @@ require('packer').startup(function(use)
     'rcarriga/nvim-dap-ui',
     requires = 'mfussenegger/nvim-dap'
   }
+  use 'theHamsta/nvim-dap-virtual-text'
 
   -- Linter
   use 'mfussenegger/nvim-lint'
@@ -81,6 +82,9 @@ require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   -- use 'windwp/windline.nvim'
+
+  -- Startup
+  use 'lewis6991/impatient.nvim'
 
   -- Syntax highlighting
   use {

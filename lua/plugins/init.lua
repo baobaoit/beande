@@ -15,7 +15,8 @@ local plugins = {
     'nvim-dap-ui',
     'nvim-treesitter',
     'nvim-lint',
-    'toggleterm'
+    'toggleterm',
+    'nvim-dap-virtual-text'
   }
 }
 
