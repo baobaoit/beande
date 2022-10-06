@@ -54,21 +54,32 @@ local get_java_debug_jar = function()
   return ''
 end
 
--- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
--- Watch out for the 💀, it indicates that you must adjust something.
-local config = {
-  cmd = {
+local get_cmd = function()
+  local cmd = {
 
     -- 💀
     'jdtls',
+  }
 
-    get_lombok_javaagent(),
-    get_lombok_bootclasspath(),
+  local lombok_javaagent = get_lombok_javaagent()
+  local lombok_bootclasspath = get_lombok_bootclasspath()
+  if (lombok_javaagent ~= '' and lombok_bootclasspath ~= '') then
+    table.insert(cmd, lombok_javaagent)
+    table.insert(cmd, lombok_bootclasspath)
+  end
 
-    -- 💀
-    -- See `data directory configuration` section in the README
-    '-data', workspace_dir,
-  },
+  -- 💀
+  -- See `data directory configuration` section in the README
+  table.insert(cmd, '-data')
+  table.insert(cmd, workspace_dir)
+
+  return cmd
+end
+
+-- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
+-- Watch out for the 💀, it indicates that you must adjust something.
+local config = {
+  cmd = get_cmd(),
 
   -- 💀
   -- This is the default if not provided, you can remove it. Or adjust as needed.
