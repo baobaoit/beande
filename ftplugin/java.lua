@@ -36,12 +36,14 @@ local get_lombok_javaagent = function()
   if is_file_exist(lombok_jar) then
     return string.format('--jvm-arg=-javaagent:%s', lombok_jar)
   end
+  return ''
 end
 
 local get_lombok_bootclasspath = function()
   if is_file_exist(lombok_jar) then
     return string.format('--jvm-arg=-Xbootclasspath/a:%s', lombok_jar)
   end
+  return ''
 end
 
 local get_java_debug_jar = function()
@@ -49,6 +51,7 @@ local get_java_debug_jar = function()
   if is_file_exist(jdj_full_path) then
     return jdj_full_path
   end
+  return ''
 end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
