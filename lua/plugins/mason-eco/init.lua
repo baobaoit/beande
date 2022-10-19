@@ -4,7 +4,8 @@ function M.setup()
   local plugins = {
     ['plugins.mason-eco'] = {
       'mason',
-      'mason-lspconfig'
+      'mason-lspconfig',
+      'mason-tool'
     }
   }
 

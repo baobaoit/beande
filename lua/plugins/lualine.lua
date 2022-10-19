@@ -12,14 +12,12 @@ function M.setup()
     sections = {
       lualine_a = {'mode'},
       lualine_b = {'branch','diff'},
+      lualine_c = {
+        { navic.get_location, cond = navic.is_available }
+      },
       lualine_x = {'encoding', 'fileformat', 'filetype'},
       lualine_y = {'progress'},
       lualine_z = {'location'}
-    },
-    winbar = {
-      lualine_a = {
-        { navic.get_location, cond = navic.is_available }
-      },
     },
     extensions = {
       -- Lualine extensions change statusline appearance for a window/buffer with specified filetypes.

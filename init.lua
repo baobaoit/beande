@@ -73,6 +73,7 @@ require('packer').startup(function(use)
     'neovim/nvim-lspconfig',
     'williamboman/mason-lspconfig.nvim',
     'williamboman/mason.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
   }
 
   -- Status bar
