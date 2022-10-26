@@ -9,10 +9,10 @@ local nvim_dir = home_dir..'/.config/nvim'
 local rule_dir = nvim_dir..'/rule/'
 local java_settings_url = rule_dir..'settings.prefs'
 local java_format_style_rule = rule_dir..'eclipse-java-google-style.xml'
-local java_debug_jar = nvim_dir..'/java-debug/*.jar'
+local java_debug_jar = fn.stdpath('data')..'/mason/packages/java-debug-adapter/extension/server/*.jar'
 local workspace_root_dir = nvim_dir..'/workspace/'
 local workspace_dir = workspace_root_dir..project_name
-local lombok_jar = vim.fn.expand(home_dir..'/.m2/repository/org/projectlombok/lombok/*/*.jar')
+local lombok_jar = fn.expand(home_dir..'/.m2/repository/org/projectlombok/lombok/*/*.jar')
 local lsp = require('plugins.lsp')
 
 local on_attach = function(client, bufnr)

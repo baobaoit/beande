@@ -5,7 +5,8 @@ function M.setup()
     ensure_installed = {
       'luacheck',
       'shellcheck',
-      'yamllint'
+      'yamllint',
+      'java-debug-adapter'
     }
   }
 end
