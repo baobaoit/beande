@@ -39,13 +39,6 @@ local get_lombok_javaagent = function()
   return ''
 end
 
-local get_lombok_bootclasspath = function()
-  if is_file_exist(lombok_jar) then
-    return string.format('--jvm-arg=-Xbootclasspath/a:%s', lombok_jar)
-  end
-  return ''
-end
-
 local get_java_debug_jar = function()
   local jdj_full_path = fn.expand(java_debug_jar)
   if is_file_exist(jdj_full_path) then
@@ -62,10 +55,8 @@ local get_cmd = function()
   }
 
   local lombok_javaagent = get_lombok_javaagent()
-  local lombok_bootclasspath = get_lombok_bootclasspath()
-  if (lombok_javaagent ~= '' and lombok_bootclasspath ~= '') then
+  if (lombok_javaagent ~= '') then
     table.insert(cmd, lombok_javaagent)
-    table.insert(cmd, lombok_bootclasspath)
   end
 
   -- 💀
