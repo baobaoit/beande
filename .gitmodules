@@ -1,6 +1,3 @@
-[submodule "pack/java-debug"]
-	path = pack/java-debug
-	url = https://github.com/microsoft/java-debug
 [submodule "pack/fernflower"]
 	path = pack/fernflower
 	url = https://github.com/fesh0r/fernflower
