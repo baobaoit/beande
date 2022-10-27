@@ -19,7 +19,10 @@ end
 
 local home = os.getenv('HOME')
 local nvim_bin_dir = home .. '/.config/nvim/bin'
-local platform = require('mason-core.platform')
+local platform_ok, platform = pcall(require, 'mason-core.platform')
+if not platform_ok then
+  platform = { path_sep = '/'  }
+end
 ---@diagnostic disable-next-line: 122
 vim.env.PATH = nvim_bin_dir .. platform.path_sep .. vim.env.PATH
 

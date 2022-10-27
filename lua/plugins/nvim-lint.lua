@@ -1,7 +1,13 @@
 local M = {}
 
 function M.setup()
-  require('lint').linters_by_ft = {
+  local lint_ok, lint = pcall(require, 'lint')
+  if not lint_ok then
+    print('The plugin [lint] not found. Please run :PackerSync!')
+    return
+  end
+
+  lint.linters_by_ft = {
     java = { 'checkstyle' },
     lua = { 'luacheck' },
     sh = { 'shellcheck' },
@@ -11,14 +17,26 @@ function M.setup()
   vim.api.nvim_create_autocmd({'BufWritePost'}, {
     pattern = { '*.java', '*.sh', '*.yaml' },
     callback = function()
-      require('lint').try_lint()
+      local lint_ok, lint = pcall(require, 'lint')
+      if not lint_ok then
+        print('The plugin [lint] not found. Please run :PackerSync!')
+        return
+      end
+      
+      lint.try_lint()
     end
   })
 
   vim.api.nvim_create_autocmd({'InsertLeave'}, {
     pattern = { '*.lua' },
     callback = function()
-      require('lint').try_lint()
+      local lint_ok, lint = pcall(require, 'lint')
+      if not lint_ok then
+        print('The plugin [lint] not found. Please run :PackerSync!')
+        return
+      end
+
+      lint.try_lint()
     end
   })
 end
