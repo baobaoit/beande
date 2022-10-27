@@ -1,8 +1,19 @@
 local M = {}
 
 function M.setup()
-  local navic = require('nvim-navic')
-  require('lualine').setup {
+  local navic_ok, navic = pcall(require, 'nvim-navic')
+  if not navic_ok then
+    print('The plugin [nvim-navic] not found. Please run :PackerSync!')
+    return
+  end
+
+  local lualine_ok, lualine = pcall(require, 'lualine')
+  if not lualine_ok then
+    print('The plugin [lualine] not found. Please run :PackerSync!')
+    return
+  end
+
+  lualine.setup {
     options = {
       theme = 'onedark',
       -- disabled_filetypes = {

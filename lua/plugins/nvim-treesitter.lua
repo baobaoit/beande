@@ -1,7 +1,13 @@
 local M = {}
 
 function M.setup()
-  require('nvim-treesitter.configs').setup {
+  local nvim_treesitter_configs_ok, nvim_treesitter_configs = pcall(require, 'nvim-treesitter.configs')
+  if not nvim_treesitter_configs_ok then
+    print('The plugin [nvim-treesitter.configs] not found. Please run :PackerSync!')
+    return
+  end
+
+  nvim_treesitter_configs.setup {
     -- A list of parser names, or "all"
     ensure_installed = { 'lua', 'java', 'bash', 'yaml', 'html' },
 

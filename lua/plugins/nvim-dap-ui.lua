@@ -1,7 +1,12 @@
 local M = {}
 
 function M.setup()
-  local dapui = require('dapui')
+  local dapui_ok, dapui = pcall(require, 'dapui')
+  if not dapui_ok then
+    print('The plugin [dapui] not found. Please run :PackerSync!')
+    return
+  end
+  
   dapui.setup()
 
   -- Replicated auto-open behavior.

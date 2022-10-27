@@ -35,7 +35,12 @@ function M.get_capabilities()
 end
 
 function M.navic_attach_and_setup(client, bufnr)
-  local navic = require('nvim-navic')
+  local navic_ok, navic = pcall(require, 'nvim-navic')
+  if not navic_ok then
+    print('The plugin [nvim-navic] not found. Please run :PackerSync!')
+    return
+  end
+  
   navic.attach(client, bufnr)
   navic.setup {
     icons = {
