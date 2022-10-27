@@ -1,7 +1,13 @@
 local M = {}
 
 function M.setup()
-  require('mason-tool-installer').setup {
+  local mason_tool_installer_ok, mason_tool_installer = pcall(require, 'mason-tool-installer')
+  if not mason_tool_installer_ok then
+    print('The plugin [mason-tool-installer] not found. Please run :PackerSync!')
+    return
+  end
+
+  mason_tool_installer.setup {
     ensure_installed = {
       'luacheck',
       'shellcheck',

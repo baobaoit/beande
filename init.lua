@@ -15,7 +15,13 @@ require('packer').startup(function(use)
   use {
     'windwp/nvim-autopairs',
     config = function()
-      require('nvim-autopairs').setup {}
+      local nvim_autopairs_ok, nvim_autopairs = pcall(require, 'nvim-autopairs')
+      if not nvim_autopairs_ok then
+        print('The plugin [nvim-autopairs] not found. Please run :PackerSync!')
+        return
+      end
+
+      nvim_autopairs.setup {}
     end
   }
 
@@ -30,7 +36,13 @@ require('packer').startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
+        local Comment_ok, Comment = pcall(require, 'Comment')
+        if not Comment_ok then
+          print('The plugin [Comment] not found. Please run :PackerSync!')
+          return
+        end
+
+        Comment.setup()
     end
   }
 

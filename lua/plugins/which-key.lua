@@ -1,7 +1,12 @@
 local M = {}
 
 function M.setup()
-  local wk = require('which-key')
+  local wk_ok, wk = pcall(require, 'which-key')
+  if not wk_ok then
+    print('The plugin [which-key] not found. Please run :PackerSync!')
+    return
+  end
+  
   wk.setup {
     key_labels = {
       ['<space>'] = 'SPC',

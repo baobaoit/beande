@@ -2,7 +2,11 @@ local M = {}
 
 function M.setup()
   -- luasnip setup
-  local luasnip = require('luasnip')
+  local luasnip_ok, luasnip = pcall(require, 'luasnip')
+  if not luasnip_ok then
+    print('The plugin [luasnip] not found. Please run :PackerSync!')
+    return
+  end
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -10,7 +14,12 @@ function M.setup()
   end
 
   -- nvim-cmp setup
-  local cmp = require('cmp')
+  local cmp_ok, cmp = pcall(require, 'cmp')
+  if not cmp_ok then
+    print('The plugin [cmp] not found. Please run :PackerSync!')
+    return
+  end
+
   cmp.setup {
     snippet = {
       expand = function(args)
@@ -54,7 +63,13 @@ function M.setup()
     formatting = {
       format = function(entry, vim_item)
         -- fancy icons and a name of kind
-        vim_item.kind = require('lspkind').presets.default[vim_item.kind] .. ' ' .. vim_item.kind
+        local lspkind_ok, lspkind = pcall(require, 'lspkind')
+        if not lspkind_ok then
+          print('The plugin [lspkind] not found. Please run :PackerSync!')
+          return
+        end
+
+        vim_item.kind = lspkind.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
   
         -- set a name for each source
         vim_item.menu = ({
@@ -70,7 +85,12 @@ function M.setup()
   }
 
   -- If you want insert `(` after select function or method item
-  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+  local cmp_autopairs_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
+  if not cmp_autopairs_ok then
+    print('The plugin [nvim-autopairs.completion.cmp] not found. Please run :PackerSync!')
+    return
+  end
+  
   cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({
     map_char = {
       tex = ''
