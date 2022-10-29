@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local nvim_tree_ok, nvim_tree = pcall(require, 'nvim-tree')
   if not nvim_tree_ok then
-    print('The plugin [nvim-tree] not found. Please run :PackerSync!')
+    vim.notify('The plugin [nvim-tree] not found. Please run :PackerSync!')
     return
   end
 

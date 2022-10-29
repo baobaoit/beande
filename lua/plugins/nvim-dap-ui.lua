@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local dapui_ok, dapui = pcall(require, 'dapui')
   if not dapui_ok then
-    print('The plugin [dapui] not found. Please run :PackerSync!')
+    vim.notify('The plugin [dapui] not found. Please run :PackerSync!')
     return
   end
   

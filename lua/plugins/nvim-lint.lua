@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local lint_ok, lint = pcall(require, 'lint')
   if not lint_ok then
-    print('The plugin [lint] not found. Please run :PackerSync!')
+    vim.notify('The plugin [lint] not found. Please run :PackerSync!')
     return
   end
 
@@ -19,7 +19,7 @@ function M.setup()
     callback = function()
       local lint_ok, lint = pcall(require, 'lint')
       if not lint_ok then
-        print('The plugin [lint] not found. Please run :PackerSync!')
+        vim.notify('The plugin [lint] not found. Please run :PackerSync!')
         return
       end
       
@@ -32,7 +32,7 @@ function M.setup()
     callback = function()
       local lint_ok, lint = pcall(require, 'lint')
       if not lint_ok then
-        print('The plugin [lint] not found. Please run :PackerSync!')
+        vim.notify('The plugin [lint] not found. Please run :PackerSync!')
         return
       end
 

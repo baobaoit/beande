@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local dap_ok, dap = pcall(require, 'dap')
   if not dap_ok then
-    print('The plugin [dap] not found. Please run :PackerSync!')
+    vim.notify('The plugin [dap] not found. Please run :PackerSync!')
     return
   end
 
