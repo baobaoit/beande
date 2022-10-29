@@ -20,9 +20,40 @@ o('timeoutlen', 500) -- By default timeoutlen is 1000 ms
 wo(0, 'nu', true)
 wo(0, 'rnu', true)
 
+
+local notify_ok, notify = pcall(require, 'notify')
+if notify_ok then
+  vim.notify = notify
+end
+
+
 local map_opts = { noremap = true, silent = true }
 -- Escape the Terminal mode
 map('t', '<Esc>', '<C-\\><C-n>', map_opts)
+-- Neovim split navigation
+local wk_ok, wk = pcall(require, 'which-key')
+if wk_ok then
+  wk.register({
+    ['<A-h>'] = {
+      '<Esc><C-w>h',
+      'Navigate to the left window'
+    },
+    ['<A-j>'] = {
+      '<Esc><C-w>j',
+      'Navigate to the below window'
+    },
+    ['<A-k>'] = {
+      '<Esc><C-w>k',
+      'Navigate to the above window'
+    },
+    ['<A-l>'] = {
+      '<Esc><C-w>l',
+      'Navigate to the right window'
+    }
+  }, {
+    mode = 'n'
+  })
+end
 
 autocmd({'FileType'}, {
     group = augroup('SetTab', {}),

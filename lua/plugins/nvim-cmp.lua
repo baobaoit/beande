@@ -4,7 +4,7 @@ function M.setup()
   -- luasnip setup
   local luasnip_ok, luasnip = pcall(require, 'luasnip')
   if not luasnip_ok then
-    print('The plugin [luasnip] not found. Please run :PackerSync!')
+    vim.notify('The plugin [luasnip] not found. Please run :PackerSync!')
     return
   end
 
@@ -16,7 +16,7 @@ function M.setup()
   -- nvim-cmp setup
   local cmp_ok, cmp = pcall(require, 'cmp')
   if not cmp_ok then
-    print('The plugin [cmp] not found. Please run :PackerSync!')
+    vim.notify('The plugin [cmp] not found. Please run :PackerSync!')
     return
   end
 
@@ -65,7 +65,7 @@ function M.setup()
         -- fancy icons and a name of kind
         local lspkind_ok, lspkind = pcall(require, 'lspkind')
         if not lspkind_ok then
-          print('The plugin [lspkind] not found. Please run :PackerSync!')
+          vim.notify('The plugin [lspkind] not found. Please run :PackerSync!')
           return
         end
 
@@ -87,7 +87,7 @@ function M.setup()
   -- If you want insert `(` after select function or method item
   local cmp_autopairs_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
   if not cmp_autopairs_ok then
-    print('The plugin [nvim-autopairs.completion.cmp] not found. Please run :PackerSync!')
+    vim.notify('The plugin [nvim-autopairs.completion.cmp] not found. Please run :PackerSync!')
     return
   end
   

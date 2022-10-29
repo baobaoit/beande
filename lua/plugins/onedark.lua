@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local onedark_ok, onedark = pcall(require, 'onedark')
   if not onedark_ok then
-    print('The plugin [onedark] not found. Please run :PackerSync!')
+    vim.notify('The plugin [onedark] not found. Please run :PackerSync!')
     return
   end
 
