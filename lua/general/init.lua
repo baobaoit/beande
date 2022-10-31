@@ -12,6 +12,7 @@ cmd [[filetype plugin indent on]]
 g('mapleader', ' ')
 o('completeopt', 'menu,menuone,noselect')
 o('hidden', true)
+o('listchars', 'eol:¬,tab:>·,trail:~,space:␣')
 o('mouse', 'a')
 o('shell', '/bin/zsh')
 o('t_Co', '256')
@@ -49,6 +50,12 @@ if wk_ok then
     ['<A-l>'] = {
       '<Esc><C-w>l',
       'Navigate to the right window'
+    },
+    ['<leader>'] = {
+      sl = {
+        '<Cmd>set list!<cr>',
+        'Show/Hidden special characters'
+      }
     }
   }, {
     mode = 'n'
@@ -61,7 +68,6 @@ autocmd({'FileType'}, {
     callback = function()
       opt(0, 'et', true)
       opt(0, 'shiftwidth', 2)
-      opt(0, 'ts', 2)
-      opt(0, 'si', true)
+      opt(0, 'ts', 4)
     end
 })
