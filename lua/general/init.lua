@@ -68,6 +68,7 @@ autocmd({'FileType'}, {
     callback = function()
       opt(0, 'et', true)
       opt(0, 'shiftwidth', 2)
-      opt(0, 'ts', 4)
+      opt(0, 'ts', 2)
+      opt(0, 'si', true)
     end
 })
