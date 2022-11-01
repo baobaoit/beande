@@ -90,7 +90,7 @@ function M.setup()
           }
         },
         t = {
-          ':lua require("dap").terminate()<CR> :lua require("dapui").close()<CR>',
+          ':lua require("dapui").close()<CR> :lua require("dap").terminate()<CR> :DapVirtualTextForceRefresh<CR>',
           'Terminates the debug session'
         }
       },
