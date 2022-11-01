@@ -3,13 +3,13 @@ local M = {}
 function M.setup()
   local telescope_ok, telescope = pcall(require, 'telescope')
   if not telescope_ok then
-    print('The plugin [telescope] not found. Please run :PackerSync!')
+    vim.notify('The plugin [telescope] not found. Please run :PackerSync!')
     return
   end
 
   local telescope_themes_ok, telescope_themes = pcall(require, 'telescope.themes')
   if not telescope_themes_ok then
-    print('The plugin [telescope.themes] not found. Please run :PackerSync!')
+    vim.notify('The plugin [telescope.themes] not found. Please run :PackerSync!')
     return
   end
 

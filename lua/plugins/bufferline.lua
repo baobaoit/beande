@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local bufferline_ok, bufferline = pcall(require, 'bufferline')
   if not bufferline_ok then
-    print('The plugin [bufferline] not found. Please run :PackerSync!')
+    vim.notify('The plugin [bufferline] not found. Please run :PackerSync!')
     return
   end
 

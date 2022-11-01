@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local nvim_treesitter_configs_ok, nvim_treesitter_configs = pcall(require, 'nvim-treesitter.configs')
   if not nvim_treesitter_configs_ok then
-    print('The plugin [nvim-treesitter.configs] not found. Please run :PackerSync!')
+    vim.notify('The plugin [nvim-treesitter.configs] not found. Please run :PackerSync!')
     return
   end
 

@@ -88,6 +88,9 @@ require('packer').startup(function(use)
     'WhoIsSethDaniel/mason-tool-installer.nvim',
   }
 
+  -- Notify
+  use 'rcarriga/nvim-notify'
+
   -- Status bar
   use 'j-hui/fidget.nvim'
   use {
@@ -139,6 +142,6 @@ require('packer').startup(function(use)
   end
 end)
 
-require('plugins')
-
 require('general')
+
+require('plugins')

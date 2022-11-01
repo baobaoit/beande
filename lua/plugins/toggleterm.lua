@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   local toggleterm_ok, toggleterm = pcall(require, 'toggleterm')
   if not toggleterm_ok then
-    print('The plugin [toggleterm] not found. Please run :PackerSync!')
+    vim.notify('The plugin [toggleterm] not found. Please run :PackerSync!')
     return
   end
 
