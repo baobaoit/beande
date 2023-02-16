@@ -81,7 +81,7 @@ end
 function M.setup()
   local servers = {
     ['plugins.lsp'] = {
-      'sumneko_lua',
+      'lua_ls',
       'bashls',
       'lemminx',
       'yamlls',

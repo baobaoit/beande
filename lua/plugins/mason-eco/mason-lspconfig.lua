@@ -9,7 +9,7 @@ function M.setup()
 
   mason_lspconfig.setup {
     ensure_installed = {
-      'sumneko_lua',
+      'lua_ls',
       'jdtls',
       'bashls',
       'lemminx',
