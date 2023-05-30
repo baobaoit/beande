@@ -28,8 +28,8 @@ require('packer').startup(function(use)
   -- Buffer line
   use {
     'akinsho/bufferline.nvim',
-    tag = 'v2.*',
-    requires = 'kyazdani42/nvim-web-devicons'
+    tag = '*',
+    requires = 'nvim-tree/nvim-web-devicons'
   }
 
   -- Comment
@@ -59,9 +59,9 @@ require('packer').startup(function(use)
 
   -- File explorer
   use {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua',
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
     }
   }
 
@@ -95,7 +95,7 @@ require('packer').startup(function(use)
   use 'j-hui/fidget.nvim'
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   -- use 'windwp/windline.nvim'
 
@@ -112,7 +112,7 @@ require('packer').startup(function(use)
 
   -- Telescope
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
   -- or                            , branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
@@ -121,7 +121,7 @@ require('packer').startup(function(use)
   -- Terminal
   use {
     'akinsho/toggleterm.nvim',
-    tag = 'v2.*'
+    tag = '*'
   }
 
   -- Theme

@@ -16,16 +16,20 @@ function M.setup()
   lualine.setup {
     options = {
       theme = 'onedark',
-      -- disabled_filetypes = {
-      --   'java'
-      -- }
     },
     sections = {
       lualine_a = {'mode'},
       lualine_b = {'branch','diff'},
       lualine_c = {
-        { navic.get_location, cond = navic.is_available }
-      },
+        {
+          function()
+              return navic.get_location()
+          end,
+          cond = function()
+              return navic.is_available()
+          end
+        },
+    },
       lualine_x = {'encoding', 'fileformat', 'filetype'},
       lualine_y = {'progress'},
       lualine_z = {'location'}

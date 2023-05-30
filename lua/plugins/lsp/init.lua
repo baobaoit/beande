@@ -40,41 +40,47 @@ function M.navic_attach_and_setup(client, bufnr)
     print('The plugin [nvim-navic] not found. Please run :PackerSync!')
     return
   end
-  
+
   navic.attach(client, bufnr)
   navic.setup {
     icons = {
-        File          = " ",
+        File          = "󰈙 ",
         Module        = " ",
-        Namespace     = " ",
+        Namespace     = "󰌗 ",
         Package       = " ",
-        Class         = " ",
-        Method        = " ",
+        Class         = "󰌗 ",
+        Method        = "󰆧 ",
         Property      = " ",
         Field         = " ",
         Constructor   = " ",
-        Enum          = "練",
-        Interface     = "練",
-        Function      = " ",
-        Variable      = " ",
-        Constant      = " ",
-        String        = " ",
-        Number        = " ",
+        Enum          = "󰕘 ",
+        Interface     = "󰕘 ",
+        Function      = "󰊕 ",
+        Variable      = "󰆧 ",
+        Constant      = "󰏿 ",
+        String        = "󰀬 ",
+        Number        = "󰎠 ",
         Boolean       = "◩ ",
-        Array         = " ",
-        Object        = " ",
-        Key           = " ",
-        Null          = "ﳠ ",
+        Array         = "󰅪 ",
+        Object        = "󰅩 ",
+        Key           = "󰌋 ",
+        Null          = "󰟢 ",
         EnumMember    = " ",
-        Struct        = " ",
+        Struct        = "󰌗 ",
         Event         = " ",
-        Operator      = " ",
-        TypeParameter = " ",
+        Operator      = "󰆕 ",
+        TypeParameter = "󰊄 ",
+    },
+    lsp = {
+        auto_attach = false,
+        preference = nil,
     },
     highlight = false,
     separator = " > ",
     depth_limit = 0,
     depth_limit_indicator = "..",
+    safe_output = true,
+    click = false
   }
 end
 
