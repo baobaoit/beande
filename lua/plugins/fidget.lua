@@ -8,8 +8,12 @@ function M.setup()
   end
 
   fidget.setup {
-    text = {
-      spinner = 'bouncing_bar'
+    progress = {
+      display = {
+        progress_icon = {
+          pattern = 'bouncing_bar'
+        }
+      }
     }
   }
 end
