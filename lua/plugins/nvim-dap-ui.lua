@@ -6,7 +6,7 @@ function M.setup()
     vim.notify('The plugin [dapui] not found. Please run :PackerSync!')
     return
   end
-  
+
   dapui.setup()
 
   -- Replicated auto-open behavior.

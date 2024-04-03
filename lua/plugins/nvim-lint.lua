@@ -22,7 +22,7 @@ function M.setup()
         vim.notify('The plugin [lint] not found. Please run :PackerSync!')
         return
       end
-      
+
       lint.try_lint()
     end
   })

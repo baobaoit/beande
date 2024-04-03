@@ -71,9 +71,11 @@ require('packer').startup(function(use)
   -- Java JDT.LS
   use 'mfussenegger/nvim-dap'
   use 'mfussenegger/nvim-jdtls'
-  use {
-    'rcarriga/nvim-dap-ui',
-    requires = 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui",
+    requires = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio"
+    }
   }
   use 'theHamsta/nvim-dap-virtual-text'
 

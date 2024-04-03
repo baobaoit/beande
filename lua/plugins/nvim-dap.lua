@@ -16,7 +16,7 @@ function M.setup()
       port = 5005;
     },
   }
-  
+
   vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
 end
 
