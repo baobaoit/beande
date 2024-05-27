@@ -15,7 +15,6 @@ o('hidden', true)
 o('listchars', 'eol:¬,tab:>·,trail:~,space:␣')
 o('mouse', 'a')
 o('shell', '/bin/zsh')
-o('t_Co', '256')
 o('tgc', true)
 o('timeoutlen', 500) -- By default timeoutlen is 1000 ms
 wo(0, 'nu', true)
